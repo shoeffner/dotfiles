@@ -29,6 +29,7 @@ eval "$(thefuck --alias)"
 alias json='python -m json.tool | ccat'
 alias findershow="defaults write com.apple.finder AppleShowAllFiles YES && echo \"Alt-Click on Finder and relaunch!\""
 alias finderhide="defaults write com.apple.finder AppleShowAllFiles NO && echo \"Alt-Click on Finder and relaunch!\""
+alias gitst='git status -sb'
 # END ALIASES
 
 
