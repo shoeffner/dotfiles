@@ -1,0 +1,12 @@
+VIRTUAL_ENV_DISABLE_PROMPT=1
+
+PROMPT='%{%F{182}%}${CURRENT_VENV}%(1l. .)%f%(?.%{%F{green}%}.%{%F{red}%})%#%{%F{249}%} '
+FIND_FEATURE="feature"
+REPL_FEATURE="f"
+RPS1='%{%F{220}%}%2~%{%f%} ${$(git_prompt_info)//$FIND_FEATURE/$REPL_FEATURE}'
+
+ZSH_THEME_GIT_PROMPT_PREFIX='%{%F{60}%}'
+ZSH_THEME_GIT_PROMPT_SUFFIX='%f'
+ZSH_THEME_GIT_PROMPT_DIRTY=' ⚡'
+ZSH_THEME_GIT_PROMPT_CLEAN=''
+
