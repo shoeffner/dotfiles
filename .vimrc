@@ -37,6 +37,7 @@ syntax on
 
 " options for syntastic
 let g:syntastic_python_python_exec = '/usr/local/bin/python3'
+let g:ycm_python_binary_path = '/usr/local/bin/python3'
 
 " overwritten by airline
 " set statusline=[%n]\ %F\ %(\ %M%R%H)%)\ \@(%l\,%c%V)\ %P
