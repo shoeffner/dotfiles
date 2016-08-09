@@ -19,7 +19,7 @@ source /usr/local/share/x86_64-osx-ghc-8.0.1/compleat-1.0/compleat_setup
 
 # START ENV
 export PATH="/usr/local/sbin:$PATH"
-export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=512m"
+export MAVEN_OPTS="-Xmx1024m"
 export EDITOR="/usr/local/bin/vim"
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 # END ENV
@@ -53,6 +53,11 @@ git-checkout-before() {
 # compiles tex projects with bibtex
 pdfcomp() {
     pdflatex $1.tex && bibtex $1 && pdflatex $1.tex && pdflatex $1.tex && open $1.pdf
+}
+
+# epoch time
+epoch() {
+    date +'%s'
 }
 
 # END FUNCTIONS
