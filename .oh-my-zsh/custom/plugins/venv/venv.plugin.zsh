@@ -28,7 +28,7 @@ declare -f + venv-activate > /dev/null || venv-activate() {
 }
 
 declare -f + venv-deactivate > /dev/null || venv-deactivate() {
-  if [[ $CURRENT_VENV != "" ]]; then
+  if [[ -n $CURRENT_VENV ]]; then
     export CURRENT_VENV=""
     if [[ $(whence deactivate) == "deactivate" ]]; then
       deactivate
@@ -37,10 +37,32 @@ declare -f + venv-deactivate > /dev/null || venv-deactivate() {
   fi
 }
 
+# currently only for pyvenv in python3.4+
+declare -f + venv-freeze > /dev/null || venv-freeze() {
+  if [[ -n $VIRTUAL_ENV ]]; then
+      cat $VIRTUAL_ENV/pyvenv.cfg | grep include-system-site-packages | grep true > /dev/null
+      uses_system=$?
+      if [ $uses_system -eq 0 ]; then
+          venv_path=$VIRTUAL_ENV
+          sed -i.bak 's/include-system-site-packages = true/include-system-site-packages = false/g' $venv_path/pyvenv.cfg
+          venv-deactivate
+          venv-activate $venv_path
+      fi
+      pip freeze > requirements.txt
+      if [ $uses_system -eq 0 ]; then
+          sed -i.bak 's/include-system-site-packages = false/include-system-site-packages = true/g' $venv_path/pyvenv.cfg
+          rm $venv_path/pyvenv.cfg.bak
+          venv-deactivate
+          venv-activate $venv_path
+      fi
+      return 0
+  fi
+}
+
 declare -f + venv-cd > /dev/null || venv-cd() {
   venv_path=$(venv-find-in-path ${1:A})
   cd $1
-  if [[ "" == $venv_path ]]; then
+  if [[ -z $venv_path ]]; then
     venv-deactivate
   else
     venv-activate $venv_path
