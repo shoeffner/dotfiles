@@ -36,11 +36,15 @@ filetype plugin indent on
 syntax on
 
 " options for syntastic
-let g:syntastic_python_python_exec = '/usr/local/bin/python3'
+if !empty($VIRTUAL_ENV)
+    " assumes pylint and flake8 are available in virtualenvs
+    let g:syntastic_python_pylint_exe = $VIRTUAL_ENV . '/bin/python -m pylint'
+    let g:syntastic_python_flake8_exe = $VIRTUAL_ENV . '/bin/python -m flake8'
+    let g:syntastic_python_checkers = ['pylint', 'flake8']
+endif
+
 let g:ycm_python_binary_path = '/usr/local/bin/python3'
 
-" overwritten by airline
-" set statusline=[%n]\ %F\ %(\ %M%R%H)%)\ \@(%l\,%c%V)\ %P
 " needed for airline
 set laststatus=2
 
