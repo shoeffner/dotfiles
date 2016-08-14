@@ -1,7 +1,7 @@
 # START OH MY ZSH
 export ZSH=/Users/shoeffner/.oh-my-zsh
 export ZSH_THEME="my_custom"
-# export ZSH_CUSTOM=/Users/shoeffner/.oh-my-zsh/custom
+export VIRTUAL_ENV_DISABLE_PROMPT=1
 export UPDATE_ZSH_DAYS=7
 ENABLE_CORRECTION="true"
 plugins=(git brew gem compleat mvn pip python vagrant vi-mode wd venv zsh-syntax-highlighting)
