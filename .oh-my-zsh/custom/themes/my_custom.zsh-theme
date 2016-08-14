@@ -10,7 +10,7 @@ function git_simple_repository (
     if [[ $(git_prompt_info) ]]; then
         GITREPO=$(git remote get-url origin 2>/dev/null)
         if [[ $GITREPO == http* ]]; then
-            print $(echo $GITREPO | cut -f 4 -d "/" | cut -c 1,2)/${GITREPO##*/}
+            print $(echo $GITREPO | cut -f 4 -d "/" | cut -c 1,2)/$(echo ${GITREPO##*/} | cut -f 1 -d ".")
         elif [[ $GITREPO == git* ]]; then
             print $(echo $GITREPO | cut -f 2 -d ":" | cut -c 1,2)/$(echo $GITREPO | cut -f 2 -d "/" | cut -f 1 -d ".")
         else
