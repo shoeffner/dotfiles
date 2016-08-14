@@ -61,7 +61,6 @@ set autoread
 " colorschemes by filetypes
 set t_Co=256
 au BufEnter * colorscheme desertedocean
-au BufEnter *.py colorscheme luna-term
 au BufEnter *.vimrc colorscheme inkpot
 
 " add filetype json for ipynbs
