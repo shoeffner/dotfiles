@@ -4,7 +4,7 @@ export ZSH_THEME="my_custom"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export UPDATE_ZSH_DAYS=7
 ENABLE_CORRECTION="true"
-plugins=(git brew gem compleat mvn pip python vagrant vi-mode wd venv zsh-syntax-highlighting)
+plugins=(git brew gem npm compleat mvn pip python vi-mode wd venv zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 # remove arguments in argument list from auto completion
 zstyle ':completion:*:(rm|kill|diff):*' ignore-line yes
