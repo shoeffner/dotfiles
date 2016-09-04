@@ -21,7 +21,7 @@ declare -f + venv-activate > /dev/null || venv-activate() {
       source $1/bin/activate
       export CURRENT_VENV=$abspath[-1]
     elif [[ -f $1/.venv/bin/activate ]]; then
-      $1/.venv/bin/activate
+      source $1/.venv/bin/activate
       export CURRENT_VENV=$abspath[-1]
     fi
   fi;
