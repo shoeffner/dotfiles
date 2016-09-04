@@ -7,6 +7,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 " YouCompleteMe!
 Plugin 'Valloric/YouCompleteMe'
+" JavaScript completion for YCM
+Plugin 'ternjs/tern_for_vim' 
 " Syntax checking
 Plugin 'scrooloose/syntastic'
 " supports async, but for now I prefer syntastic
@@ -78,6 +80,7 @@ let g:jsx_ext_required = 0
 let g:used_javascript_libs = 'react,flux,jquery,underscore'
 au FileType javascript.jsx setlocal ts=4 sw=4 sts=0 noexpandtab
 au FileType html setlocal ts=4 sw=4 sts=0 noexpandtab
+au BufEnter,BufRead,BufNewFile,BufFilePost package.json setlocal ts=2 sw=2 expandtab
 
 " needed for airline
 set laststatus=2
