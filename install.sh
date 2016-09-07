@@ -1,5 +1,5 @@
 # better not run this file as of now, just see it as advice on what to do
-return 
+return
 
 cd ~
 # brew
@@ -61,5 +61,5 @@ gpg --edit-key $(gpg --list-secret-keys | grep ^sec | cut -d ' '  -f 4 | cut -d 
 echo default-key $(gpg --list-secret-keys | grep ^sec | cut -d ' '  -f 4 | cut -d '/' -f 2) >> ~/.gnupg/gpg.conf
 git config --global user.signingkey $(gpg --list-secret-keys | grep ^sec | cut -d ' '  -f 4 | cut -d '/' -f 2)
 
-# to auto sign set in you git repo:
+# to auto sign set in your git repo:
 git config --local commit.gpgsign true
