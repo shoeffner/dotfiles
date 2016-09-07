@@ -72,9 +72,6 @@ function! GitGutterColors()
     hi GitGutterDelete ctermfg=124
 endfunction
 
-" you complete me
-let g:ycm_python_binary_path = '/usr/local/bin/python3'
-
 " javascript/jsx/react
 let g:jsx_ext_required = 0
 let g:used_javascript_libs = 'react,flux,jquery,underscore'
