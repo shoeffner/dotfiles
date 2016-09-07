@@ -73,5 +73,13 @@ man() {
             man "$@"
 }
 
+# just remove all docker images
+docker-ci() {
+    if [ -z ${1+x} ]; then
+        docker rmi -f $(docker images | awk '{print $3}') >/dev/null
+    else
+        docker rmi -f $(docker images | grep $1 | awk '{print $3}') >/dev/null
+    fi
+}
 # END FUNCTIONS
 
