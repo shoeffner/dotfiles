@@ -16,20 +16,20 @@ declare -f + venv-find-in-path > /dev/null || venv-find-in-path() {
 
 declare -f + venv-activate > /dev/null || venv-activate() {
   abspath=("${(@s=/=)${1:A}}")
-  if [[ $CURRENT_VENV != $abspath[-1] ]]; then
+  if [[ $VIRTUAL_ENV != $abspath[-1] ]]; then
     if [[ -f $1/bin/activate ]]; then
       source $1/bin/activate
-      export CURRENT_VENV=$abspath[-1]
+      export VIRTUAL_ENV=$abspath[-1]
     elif [[ -f $1/.venv/bin/activate ]]; then
       source $1/.venv/bin/activate
-      export CURRENT_VENV=$abspath[-1]
+      export VIRTUAL_ENV=$abspath[-1]
     fi
   fi;
 }
 
 declare -f + venv-deactivate > /dev/null || venv-deactivate() {
-  if [[ -n $CURRENT_VENV ]]; then
-    export CURRENT_VENV=""
+  if [[ -n $VIRTUAL_ENV ]]; then
+    export VIRTUAL_ENV=""
     if [[ $(whence deactivate) == "deactivate" ]]; then
       deactivate
       return 0
