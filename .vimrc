@@ -8,7 +8,7 @@ Plugin 'VundleVim/Vundle.vim'
 " YouCompleteMe!
 Plugin 'Valloric/YouCompleteMe'
 " JavaScript completion for YCM
-Plugin 'ternjs/tern_for_vim' 
+Plugin 'ternjs/tern_for_vim'
 " Syntax checking
 Plugin 'scrooloose/syntastic'
 " supports async, but for now I prefer syntastic
@@ -49,17 +49,23 @@ if !empty($VIRTUAL_ENV)
 endif
 let g:syntastic_check_on_open = 1
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_error_symbol = '😡'
-let g:syntastic_style_error_symbol = '⛏'
-let g:syntastic_warning_symbol = '⛅'
-let g:syntastic_style_warning_symbol = '☕'
+let g:syntastic_error_symbol = '!'
+let g:syntastic_warning_symbol = '¡'
+let g:syntastic_style_warning_symbol = '†'
+let g:syntastic_style_error_symbol = '‡'
+" let g:syntastic_error_symbol = '😡 '
+" let g:syntastic_warning_symbol = '😡 '
+" let g:syntastic_style_warning_symbol = '😡 '
+" let g:syntastic_style_error_symbol = '⛏'
+"let g:syntastic_warning_symbol = '⛅'
+"let g:syntastic_style_warning_symbol = '⛅'  "☕ '
 
 " colorscheme corrections for syntastic
 function! SyntasticColors()
-    hi SyntasticErrorSign ctermbg=247
-    hi SyntasticWarningSign ctermbg=69
-    hi SyntasticStyleErrorSign ctermbg=7
-    hi SyntasticStyleWarningSign ctermbg=94
+    hi SyntasticErrorSign ctermbg=160
+    hi SyntasticWarningSign ctermbg=220
+    hi SyntasticStyleErrorSign ctermbg=126
+    hi SyntasticStyleWarningSign ctermbg=111
 endfunction
 
 " GitGutter
@@ -75,16 +81,15 @@ endfunction
 " javascript/jsx/react
 let g:jsx_ext_required = 0
 let g:used_javascript_libs = 'react,flux,jquery,underscore'
-au FileType javascript.jsx setlocal ts=4 sw=4 sts=0 noexpandtab
-au FileType html setlocal ts=4 sw=4 sts=0 noexpandtab
-au BufEnter,BufRead,BufNewFile,BufFilePost package.json setlocal ts=2 sw=2 expandtab
+au BufEnter,BufRead,BufNewFile,BufFilePost *.js,*.jsx,package.json,*.xhtml,*.html,*.htm,*.shtml setlocal ts=2 sw=2
 
-" needed for airline
+" activate airline
 set laststatus=2
 
 " tabs = 4 spaces
 set tabstop=4
 set shiftwidth=4
+"set softtabstop=4
 set expandtab
 
 " relative and absolute line numbers
@@ -92,8 +97,9 @@ set relativenumber
 set number
 set ruler
 
-" some cool things, I guess :D
+" highlight searchresults while typing
 set incsearch
+" reloads after :! commands
 set autoread
 
 " colorschemes by filetypes
@@ -112,7 +118,7 @@ au BufRead,BufNewFile *.ipynb setfiletype json
 au BufRead,BufNewFile .eslintrc setfiletype json
 au BufRead,BufNewFile *.pl setfiletype prolog
 " automatically remove trailing whitespace in python files on write
-au BufWritePre *.py %s/\s\+$//e
+au BufWritePre * %s/\s\+$//e
 
 " navigate wrapped lines more gracefully
 nnoremap j gj

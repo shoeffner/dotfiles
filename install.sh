@@ -13,7 +13,7 @@ brew install zsh cask macvim git python python3 thefuck wget ccat bash \
     bash-completion pandoc swi-prolog wget cmake boost htop-osx node \
     go keybase neovim/neovim/neovim gpg
 brew cask install amethyst mactex haskell-platform java steam docker \
-    xquartz
+    xquartz caffeine telegram-desktop
 brew tap caskroom/versions
 
 # npm installs
@@ -24,6 +24,9 @@ rm /usr/local/bin/python
 rm /usr/local/bin/pip
 ln -s /usr/local/bin/python3 /usr/local/bin/python
 ln -s /usr/local/bin/pip3 /usr/local/bin/pip
+
+# global python installs
+pip install -r ./python_global.txt
 
 # make vim and neovim use the same files
 mkdir ~/.config
@@ -46,7 +49,8 @@ git clone git://github.com/mbrubeck/compleat.git
 # git settings:
 git config --global color.diff.old "red strike"
 git config --global color.diff.new "green"
-
+git config --global alias.st "status -sb"
+git config --global alias.slog "log --pretty='format:%C(green)%h%Creset %C(green dim)%aI%Creset %C(magenta)%s%Creset%n        %C(yellow)%aN <%ae>%Creset %C(cyan)[%G?% GS]%Creset'"
 
 # add gpg key from keybase to gpg and set it as the default for git
 # keybase export needs utf-8
@@ -54,7 +58,7 @@ echo charset utf-8 >> ~/.gnupg/gpg.conf
 keybase pgp export | gpg --import
 keybase pgp export --secret | gpg --import --allow-secret-key-import
 
-# trust your secret key ultimately (also trusts your public key) - just type 
+# trust your secret key ultimately (also trusts your public key) - just type
 # trust\n 5\n y\n quit\n
 gpg --edit-key $(gpg --list-secret-keys | grep ^sec | cut -d ' '  -f 4 | cut -d '/' -f 2)
 # set default gpg key

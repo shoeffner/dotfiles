@@ -16,20 +16,23 @@ declare -f + venv-find-in-path > /dev/null || venv-find-in-path() {
 
 declare -f + venv-activate > /dev/null || venv-activate() {
   abspath=("${(@s=/=)${1:A}}")
-  if [[ $VIRTUAL_ENV != $abspath[-1] ]]; then
+  if [[ $VENV_VIRTUAL_ENV != $abspath[-1] ]]; then
     if [[ -f $1/bin/activate ]]; then
       source $1/bin/activate
-      export VIRTUAL_ENV=$abspath[-1]
+      export VENV_VIRTUAL_ENV_ROOT=$1
+      export VENV_VIRTUAL_ENV=$abspath[-1]
     elif [[ -f $1/.venv/bin/activate ]]; then
       source $1/.venv/bin/activate
-      export VIRTUAL_ENV=$abspath[-1]
+      export VENV_VIRTUAL_ENV_ROOT="$abspath/.venv"
+      export VENV_VIRTUAL_ENV=$abspath[-1]
     fi
   fi;
 }
 
 declare -f + venv-deactivate > /dev/null || venv-deactivate() {
-  if [[ -n $VIRTUAL_ENV ]]; then
-    export VIRTUAL_ENV=""
+  if [[ -n $VENV_VIRTUAL_ENV ]]; then
+    export VENV_VIRTUAL_ENV=""
+    export VENV_VIRTUAL_ENV_ROOT=""
     if [[ $(whence deactivate) == "deactivate" ]]; then
       deactivate
       return 0
@@ -39,11 +42,11 @@ declare -f + venv-deactivate > /dev/null || venv-deactivate() {
 
 # currently only for pyvenv in python3.4+
 declare -f + venv-freeze > /dev/null || venv-freeze() {
-  if [[ -n $VIRTUAL_ENV ]]; then
-      cat $VIRTUAL_ENV/pyvenv.cfg | grep include-system-site-packages | grep true > /dev/null
+  if [[ -n $VENV_VIRTUAL_ENV ]]; then
+      cat $VENV_VIRTUAL_ENV_ROOT/pyvenv.cfg | grep include-system-site-packages | grep true > /dev/null
       uses_system=$?
       if [ $uses_system -eq 0 ]; then
-          venv_path=$VIRTUAL_ENV
+          venv_path=$VENV_VIRTUAL_ENV_ROOT
           sed -i.bak 's/include-system-site-packages = true/include-system-site-packages = false/g' $venv_path/pyvenv.cfg
           venv-deactivate
           venv-activate $venv_path

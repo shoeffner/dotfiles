@@ -1,4 +1,4 @@
-if [ -n "$VIRTUAL_ENV" ] && [ -z "$VIRTUAL_ENV_DISABLE_PROMPT" ]; then
+if [ -n "$VENV_VIRTUAL_ENV" ] && [ -z "$VIRTUAL_ENV_DISABLE_PROMPT" ]; then
     echo Please put "export VIRTUAL_ENV_DISABLE_PROMPT=1" somewhere into your .zshrc!
 fi
 
@@ -22,7 +22,7 @@ function git_simple_repository (
 )
 
 
-PROMPT='%{%F{182}%}${VIRTUAL_ENV##*/}%(1l. .)%f%(?.%{%F{green}%}.%{%F{red}%})%#%{%F{249}%} '
+PROMPT='%{%F{182}%}${VENV_VIRTUAL_ENV##*/}%(1l. .)%f%(?.%{%F{green}%}.%{%F{red}%})%#%{%F{249}%} '
 FIND_FEATURE="feature"
 REPL_FEATURE="f"
 RPS1='%{%f%}%{%F{220}%}%2~%{%f%}%{%F{236}%} ${$(git_simple_repository)}%{%f%} ${$(git_prompt_info)//$FIND_FEATURE/$REPL_FEATURE}'
