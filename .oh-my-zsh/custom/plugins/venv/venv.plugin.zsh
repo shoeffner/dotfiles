@@ -2,7 +2,7 @@ declare -f + venv-find-in-path > /dev/null || venv-find-in-path() {
   abspath=("${(@s=/=)${1:A}}");
   current_path="/";
   for dir in $abspath; do
-    if [[ -f $current_path$dir"/pyvenv.cfg" || -d $current_path$dir"/.venv" ]]; then
+    if [[ -f $current_path$dir"/pip-selfcheck.json" || -f $current_path$dir"/pyvenv.cfg" || -d $current_path$dir"/.venv" ]]; then
       print $current_path$dir;
       unset abspath;
       unset current_path;
