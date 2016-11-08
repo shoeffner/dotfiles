@@ -39,8 +39,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 mkdir ~/.oh-my-zsh && cd ~/.oh-my-zsh && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 cd /usr/local/Caskroom/haskell-platform
 open Haskell\ Platform\ 8.0.1\ Full\ 64bit-signed-a.pkg
-cd ~/Downloads
-git clone git://github.com/mbrubeck/compleat.git
+
+# compleat
 (cd compleat && ./Setup.lhs configure && ./Setup.lhs build && sudo ./Setup.lhs install)
 
 # TODO: link files in this project to their respective counterparts

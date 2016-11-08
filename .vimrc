@@ -34,6 +34,8 @@ Plugin 'airblade/vim-gitgutter'
 " JavaScript syntax
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+" R environment
+Plugin 'jalvesaq/Nvim-R'
 call vundle#end()
 " End VUNDLE
 
@@ -53,12 +55,6 @@ let g:syntastic_error_symbol = '!'
 let g:syntastic_warning_symbol = '¡'
 let g:syntastic_style_warning_symbol = '†'
 let g:syntastic_style_error_symbol = '‡'
-" let g:syntastic_error_symbol = '😡 '
-" let g:syntastic_warning_symbol = '😡 '
-" let g:syntastic_style_warning_symbol = '😡 '
-" let g:syntastic_style_error_symbol = '⛏'
-"let g:syntastic_warning_symbol = '⛅'
-"let g:syntastic_style_warning_symbol = '⛅'  "☕ '
 
 " colorscheme corrections for syntastic
 function! SyntasticColors()
@@ -91,7 +87,8 @@ set tabstop=4
 set shiftwidth=4
 "set softtabstop=4
 set expandtab
-
+" allow backspace in insert mode to remove previous things
+"set backspace=indent,eol,start
 " relative and absolute line numbers
 set relativenumber
 set number
@@ -117,6 +114,20 @@ au BufEnter,BufRead,BufNewFile,BufFilePost .*vimrc colorscheme CandyPaper | call
 au BufRead,BufNewFile *.ipynb setfiletype json
 au BufRead,BufNewFile .eslintrc setfiletype json
 au BufRead,BufNewFile *.pl setfiletype prolog
+
+" set up R for nvim
+if has ('nvim')
+    function OpenRHelp()
+        if bufwinnr('~/.vim/bundle/Nvim-R/doc/Nvim-R.txt') < 0
+            badd ~/.vim/bundle/Nvim-R/doc/Nvim-R.txt
+            buffer ~/.vim/bundle/Nvim-R/doc/Nvim-R.txt
+            execute "/Menu entry"
+            bprevious
+        endif
+    endfunction
+    au BufEnter *.r let maplocalleader = " " | call OpenRHelp() | nnoremap <localleader>h :bnext<CR> | set syntax=r
+endif
+
 " automatically remove trailing whitespace in python files on write
 au BufWritePre * %s/\s\+$//e
 

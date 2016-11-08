@@ -4,7 +4,7 @@ export ZSH_THEME="my_custom"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export UPDATE_ZSH_DAYS=7
 ENABLE_CORRECTION="true"
-plugins=(git brew gem npm mvn pip python docker vi-mode wd venv compleat zsh-syntax-highlighting)
+plugins=(git brew gem npm mvn pip python docker vi-mode wd venv compleat history-substring-search zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 # remove arguments in argument list from auto completion
 zstyle ':completion:*:(rm|kill|diff):*' ignore-line yes
@@ -14,6 +14,7 @@ setopt histignorespace
 autoload -Uz compinit bashcompinit
 compinit
 bashcompinit
+# FIXME @shoeffner
 source /usr/local/share/x86_64-osx-ghc-8.0.1/compleat-1.0/compleat_setup
 # END OH MY ZSH
 
@@ -40,6 +41,10 @@ bindkey '^N' down-history
 bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^r' history-incremental-search-backward
+
+# history search in vim mode
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 # END vim mode
 
 
