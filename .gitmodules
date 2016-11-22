@@ -4,3 +4,6 @@
 [submodule "compleat"]
 	path = compleat
 	url = git@github.com:mbrubeck/compleat.git
+[submodule "jsonview-chrome"]
+	path = jsonview-chrome
+	url = git@github.com:jamiew/jsonview-chrome
