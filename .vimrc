@@ -43,12 +43,15 @@ filetype plugin indent on
 syntax on
 
 " syntastic
+let g:syntastic_python_checkers = ['pylint', 'flake8']
+let g:syntastic_python_pylint_exe = '/usr/local/bin/python3 -m pylint'
+let g:syntastic_python_flake8_exe = '/usr/local/bin/python3 -m flake8'
 if !empty($VIRTUAL_ENV)
     " assumes pylint and flake8 are available in virtualenvs
     let g:syntastic_python_pylint_exe = $VIRTUAL_ENV . '/bin/python -m pylint'
     let g:syntastic_python_flake8_exe = $VIRTUAL_ENV . '/bin/python -m flake8'
-    let g:syntastic_python_checkers = ['pylint', 'flake8']
 endif
+
 let g:syntastic_check_on_open = 1
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_error_symbol = '!'
@@ -87,8 +90,6 @@ set tabstop=4
 set shiftwidth=4
 "set softtabstop=4
 set expandtab
-" allow backspace in insert mode to remove previous things
-"set backspace=indent,eol,start
 " relative and absolute line numbers
 set relativenumber
 set number
