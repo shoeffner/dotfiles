@@ -1,0 +1,10 @@
+{
+  "CodeCell": {
+    "cm_config": {
+      "lineNumbers": true
+    }
+  },
+  "load_extensions": {
+    "rise/main": true
+  }
+}

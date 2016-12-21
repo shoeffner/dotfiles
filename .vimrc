@@ -44,8 +44,8 @@ syntax on
 
 " syntastic
 let g:syntastic_python_checkers = ['pylint', 'flake8']
-let g:syntastic_python_pylint_exe = '/usr/local/bin/python3 -m pylint'
-let g:syntastic_python_flake8_exe = '/usr/local/bin/python3 -m flake8'
+" let g:syntastic_python_pylint_exe = '/usr/local/bin/python3 -m pylint'
+" let g:syntastic_python_flake8_exe = '/usr/local/bin/python3 -m flake8'
 if !empty($VIRTUAL_ENV)
     " assumes pylint and flake8 are available in virtualenvs
     let g:syntastic_python_pylint_exe = $VIRTUAL_ENV . '/bin/python -m pylint'
