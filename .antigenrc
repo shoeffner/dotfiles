@@ -11,7 +11,6 @@ antigen bundles <<EOBUNDLES
     zsh-users/zsh-autosuggestions
 EOBUNDLES
 
-antigen theme shoeffner/dotfiles .oh-my-zsh/custom/themes/my_custom.zsh-theme
-#antigen theme shoeffner/dotfiles fae.zsh-theme
+antigen theme shoeffner/dotfiles fae.zsh-theme
 
 antigen apply
