@@ -1,9 +1,3 @@
-[submodule ".oh-my-zsh/custom/plugins/zsh-syntax-highlighting"]
-	path = .oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule "compleat"]
-	path = compleat
-	url = git@github.com:mbrubeck/compleat.git
-[submodule "jsonview-chrome"]
-	path = jsonview-chrome
-	url = git@github.com:jamiew/jsonview-chrome
+[submodule ".vim/bundle/Vundle.vim"]
+	path = .vim/bundle/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim.git

@@ -1,69 +1,120 @@
-# better not run this file as of now, just see it as advice on what to do
-return
+# Configuration
+PROJECTS_DIR=~/Projects
+DOTFILES_DIR=$PROJECTS_DIR/dotfiles
 
-cd ~
-# brew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew update
-brew doctor
-brew upgrade
 
-# brew formulae and cask formulae
-brew install zsh cask macvim git python python3 thefuck wget ccat bash \
-    bash-completion pandoc swi-prolog wget cmake boost htop-osx node \
-    go keybase neovim/neovim/neovim gpg
-brew cask install amethyst mactex haskell-platform java steam docker \
-    xquartz caffeine telegram-desktop
-brew tap caskroom/versions
+# Runs a command and echos an error if it was not successful.
+# Example: checked 'Some error with brew!' brew --version
+function checked() {
+    "${@:2}" 2>/dev/null
+    local status=$?
+    if [ $status -ne 0 ]; then
+        echo $1
+    fi
+    return $status
+}
 
-# npm installs
-npm i -g eslint estraverse estraverse-fb eslint-plugin-react babel-eslint
 
-# fix links for python3
-rm /usr/local/bin/python
-rm /usr/local/bin/pip
-ln -s /usr/local/bin/python3 /usr/local/bin/python
-ln -s /usr/local/bin/pip3 /usr/local/bin/pip
+# Install brew if not installed.
+checked 'Brew not installed. Installing...' brew --version
+if [ $? -ne 0 ]; then
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" || exit 1
+    brew update
+    brew upgrade
+    brew doctor
+    # tap bundle to be able to install bundles
+    brew tap Homebrew/bundle
+fi
 
-# global python installs
-pip install -r ./python_global.txt
 
-# make vim and neovim use the same files
-mkdir ~/.config
-mkdir ~/.vim
-ln -s ~/.vim ~/.config/.nvim
-ln -s ~/.vimrc ~/.config/.nvimrc
+# Install git if not installed.
+checked 'Git not installed. Installing...' git --version
+if [ $? -ne 0 ]; then
+    brew install git || (echo 'Can not install git.' && exit 1)
+fi
 
-# oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-mkdir ~/.oh-my-zsh && cd ~/.oh-my-zsh && git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
-cd /usr/local/Caskroom/haskell-platform
-open Haskell\ Platform\ 8.0.1\ Full\ 64bit-signed-a.pkg
 
-# compleat
-(cd compleat && ./Setup.lhs configure && ./Setup.lhs build && sudo ./Setup.lhs install)
+# Clone dotfiles repository properly.
+mkdir -p $PROJECTS_DIR
+if [ ! -d $DOTFILES_DIR ]; then
+    git clone --recursive https://github.com/shoeffner/dotfiles.git $DOTFILES_DIR
+fi
 
-# TODO: link files in this project to their respective counterparts
-# e.g. ln -s ~/projects/dotfiles/.vimrc ~/.vimrc
 
-# git settings:
+# Link dotfiles to their proper locations.
+function lnifnotexists() {
+    [ -L ~/$1 ] || (mkdir -p ~/$(dirname $1) && ln -s $DOTFILES_DIR/$1 ~/$1)
+}
+
+for link in \
+    '.antigenrc' \
+    '.Brewfile' \
+    '.jupyter/nbconfig/notebook.json' \
+    '.vim/bundle/Vundle.vim' \
+    '.vimrc' \
+    '.zshrc' \
+    ; do
+    lnifnotexists $link
+done
+
+
+# Install brew bundles
+# FIXME @shoeffner: Due to a bug only brew install works for python at the moment
+if brew ls --versions myformula > /dev/null; then
+    brew install python3
+fi
+brew bundle --global
+
+
+# Install Python requirements
+checked 'Python not linked propertly. Forcing links.' python3 --version
+if [ $? -ne 0 ]; then
+    brew link python3 --force
+fi
+pip3 install -r $DOTFILES_DIR/python3_requirements.txt
+
+
+# Install VIM Plugins
+vim +PluginInstall +qall
+# Compile YouCompleteMe
+(cd ~/.vim/bundle/YouCompleteMe && ./install.py)
+
+
+# Install settings
 git config --global color.diff.old "red strike"
 git config --global color.diff.new "green"
 git config --global alias.st "status -sb"
 git config --global alias.slog "log --pretty='format:%C(green)%h%Creset %C(green dim)%aI%Creset %C(magenta)%s%Creset%n        %C(yellow)%aN <%ae>%Creset %C(cyan)[%G?% GS]%Creset'"
+git config --global credential.helper osxkeychain
 
-# add gpg key from keybase to gpg and set it as the default for git
-# keybase export needs utf-8
+
+# Prompt about other things:
+cat << INFO_TEXT
+
+Almost everything is set up! Here are some notes on what to do:
+
+
+- Remember to set up your shell properly to use /bin/zsh
+- Start Caffeine
+- Start Amethyst (and give it accesibility rights)
+
+
+Some git setups to do:
+git config --global user.email "info@sebastian-hoeffner.de"
+git config --global user.name "Sebastian Höffner"
+
+
+To handle gpg keys (assuming keybase is up and running):
 echo charset utf-8 >> ~/.gnupg/gpg.conf
 keybase pgp export | gpg --import
 keybase pgp export --secret | gpg --import --allow-secret-key-import
+echo default-key <KEY ID> >> ~/.gnupg/gpg.conf
+git config --global user.signingkey <KEY ID>
 
-# trust your secret key ultimately (also trusts your public key) - just type
-# trust\n 5\n y\n quit\n
-gpg --edit-key $(gpg --list-secret-keys | grep ^sec | cut -d ' '  -f 4 | cut -d '/' -f 2)
-# set default gpg key
-echo default-key $(gpg --list-secret-keys | grep ^sec | cut -d ' '  -f 4 | cut -d '/' -f 2) >> ~/.gnupg/gpg.conf
-git config --global user.signingkey $(gpg --list-secret-keys | grep ^sec | cut -d ' '  -f 4 | cut -d '/' -f 2)
+Use gpg --edit-key <KEY ID> to edit a key, e.g. trust it
 
-# to auto sign set in your git repo:
-git config --local commit.gpgsign true
+
+Some template files can be found here:
+https://github.com/shoeffner/dotfiles/tree/master/templates
+INFO_TEXT
+
