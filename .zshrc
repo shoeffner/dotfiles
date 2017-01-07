@@ -1,12 +1,12 @@
-# ANTIGEN
-source /usr/local/opt/antigen/share/antigen/antigen.zsh
-antigen init ~/.antigenrc
-
-
 # ENVIRONMENT
 export PATH="/usr/local/sbin:$PATH"
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+
+# ANTIGEN
+source /usr/local/opt/antigen/share/antigen/antigen.zsh
+antigen init ~/.antigenrc
 
 
 # ALIASES
