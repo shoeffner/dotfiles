@@ -14,16 +14,22 @@ brew 'cmake'
 brew 'python3'
 brew 'pandoc'
 cask 'mactex'
-mas 'Xcode', id: 497799835 # Will be done manually
+#mas 'Xcode', id: 497799835 # Will be done manually
 brew 'macvim', args: ['with-override-system-vim']
 cask 'java'
 brew 'opencv3', args: ['HEAD', 'with-contrib', 'with-python3', 'with-ffmpeg']
 cask 'rstudio'
 
+# PRODUCTIVITY
+cask 'filezilla'
+cask 'google-chrome'
+cask 'openoffice'
+
 # OTHER
 cask 'amethyst'
 cask 'caffeine'
-cask 'google-chrome'
 brew 'gpg'
-cask 'telegram-desktop'
 cask 'keybase'
+cask 'skype'
+cask 'telegram-desktop'
+
