@@ -6,7 +6,21 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # ANTIGEN
 source /usr/local/opt/antigen/share/antigen/antigen.zsh
-antigen init ~/.antigenrc
+# antigen init ${HOME}/.antigenrc # See https://github.com/zsh-users/antigen/issues/391 for details
+antigen use oh-my-zsh
+antigen bundles <<EOBUNDLES
+    git
+    pip
+    python
+    Tarrasch/zsh-autoenv
+    vi-mode
+    wd
+    zsh-users/zsh-syntax-highlighting
+    zsh-users/zsh-history-substring-search
+    zsh-users/zsh-autosuggestions
+EOBUNDLES
+antigen theme shoeffner/dotfiles fae.zsh-theme
+antigen apply
 
 
 # ALIASES
