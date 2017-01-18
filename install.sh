@@ -1,5 +1,5 @@
 # Configuration
-PROJECTS_DIR=~/Projects
+PROJECTS_DIR=${HOME}/Projects
 DOTFILES_DIR=$PROJECTS_DIR/dotfiles
 
 
@@ -43,7 +43,7 @@ fi
 
 # Link dotfiles to their proper locations.
 function lnifnotexists() {
-    [ -L ~/$1 ] || (mkdir -p ~/$(dirname $1) && ln -s $DOTFILES_DIR/$1 ~/$1)
+    [ -L ${HOME}/$1 ] || (mkdir -p ${HOME}/$(dirname $1) && ln -s $DOTFILES_DIR/$1 ~/$1)
 }
 
 for link in \
@@ -77,7 +77,7 @@ pip3 install -r $DOTFILES_DIR/python3_requirements.txt
 # Install VIM Plugins
 vim +PluginInstall +qall
 # Compile YouCompleteMe
-(cd ~/.vim/bundle/YouCompleteMe && ./install.py)
+(cd ${HOME}/.vim/bundle/YouCompleteMe && ./install.py)
 
 
 # Install settings
@@ -116,5 +116,6 @@ Use gpg --edit-key <KEY ID> to edit a key, e.g. trust it
 
 Some template files can be found here:
 https://github.com/shoeffner/dotfiles/tree/master/templates
+
 INFO_TEXT
 
