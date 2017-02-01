@@ -43,8 +43,19 @@ bindkey -M vicmd 'j' history-substring-search-down
 # UPDATE COMMAND
 # updates brew and antigen
 function update() {
-    brew upgrade
+    brew cleanup
+    brew doctor
     brew update
+    brew bundle --global
+    brew upgrade
+    antigen update
+}
+
+
+# FIX ME COMMAND
+# fixes common problems with antigen and oh-my-zsh...
+function fixme() {
+    rm -rf ${HOME}/.zcompdump
     antigen update
 }
 
