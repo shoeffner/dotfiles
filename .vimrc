@@ -7,7 +7,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 
-Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 
 Plugin 'elzr/vim-json'
 Plugin 'chrisbra/csv.vim'
@@ -20,6 +20,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 
 Plugin 'mhinz/vim-startify'
+
+Plugin 'klen/python-mode'
 
 call vundle#end()
 
@@ -36,50 +38,7 @@ set ruler
 set incsearch
 set autoread
 set t_Co=256
-
-
-" KEYMAP
-nnoremap j gj
-nnoremap k gk
-
-
-" PLUGIN: Syntastic
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_exe = '/usr/local/bin/python3 -m flake8'
-
-let g:syntastic_error_symbol = '!'
-let g:syntastic_warning_symbol = '¡'
-let g:syntastic_style_warning_symbol = '†'
-let g:syntastic_style_error_symbol = '‡'
-
-function! SyntasticColors()
-    hi SyntasticErrorSign ctermbg=160
-    hi SyntasticWarningSign ctermbg=220
-    hi SyntasticStyleErrorSign ctermbg=126
-    hi SyntasticStyleWarningSign ctermbg=111
-endfunction
-
-
-" PLUGIN: GitGutter
-let g:gitgutter_override_sign_column_highlight = 0
-let g:gitgutter_sign_removed = '-'
-function! GitGutterColors()
-    hi GitGutterAdd ctermfg=34
-    hi GitGutterChange ctermfg=184
-    hi GitGutterChangeDelete ctermfg=184
-    hi GitGutterDelete ctermfg=124
-endfunction
-
-
-" PLUGIN: Airline
-set laststatus=2
-
-
-" FUNCTION: Set custom colors for plugins
-function! CustomizedColors()
-    call SyntasticColors()
-    call GitGutterColors()
-endfunction
+set laststatus=2  " PLUGIN: Airline
 
 
 " AUTOCOMMANDS: filetypes by extension
@@ -89,11 +48,38 @@ au BufRead,BufNewFile *.pl setfiletype prolog
 
 
 " AUTOCOMMANDS: colorscheme by filetype
-au BufEnter,BufRead,BufNewFile,BufFilePost * colorscheme CandyPaper | call CustomizedColors()
-au BufEnter,BufRead,BufNewFile,BufFilePost *.js colorscheme blazer | call CustomizedColors()
-au BufEnter,BufRead,BufNewFile,BufFilePost .*vimrc colorscheme CandyPaper | call CustomizedColors()
+au BufEnter,BufRead,BufNewFile,BufFilePost * colorscheme CandyPaper
+au BufEnter,BufRead,BufNewFile,BufFilePost *.js colorscheme blazer
+au BufEnter,BufRead,BufNewFile,BufFilePost .*vimrc colorscheme CandyPaper
 
 
-" AUTOCOMMAND: remove trailing whitespace in python files on write
+" AUTOCOMMAND: remove trailing whitespace in files on write
 au BufWritePre * %s/\s\+$//e
 
+
+" KEYMAP
+nnoremap j gj
+nnoremap k gk
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+
+" PLUGIN: ale
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '!!'
+let g:ale_sign_warning = '¡¡'
+
+
+" PLUGIN: GitGutter
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_sign_removed = '-'
+highlight GitGutterAdd ctermfg=34
+highlight GitGutterChange ctermfg=184
+highlight GitGutterChangeDelete ctermfg=184
+highlight GitGutterDelete ctermfg=124
+
+
+" PLUGIN: python-mode
+let g:pymode_folding = 0
+let g:pymode_warnings = 0
+let g:pymode_lint = 0

@@ -26,6 +26,7 @@ antigen apply
 # ALIASES
 eval "$(thefuck --alias)"
 alias json='python -m json.tool | ccat'
+alias tag="[ -d .git ] && ctags -R -f ./.git/tags . || ctags -R ."
 
 
 # VIM MODE

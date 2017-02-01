@@ -13,6 +13,7 @@ brew 'htop'
 # PROGRAMMING & UTILITY
 brew 'git'
 brew 'cmake'
+brew 'ctags'
 brew 'python3'
 brew 'pandoc'
 cask 'mactex'
