@@ -30,6 +30,7 @@ alias tag="[ -d .git ] && ctags -R -f ./.git/tags . || ctags -R ."
 
 
 # VIM MODE
+set -o vi
 bindkey -v
 export KEYTIMEOUT=1
 bindkey '^P' up-history
