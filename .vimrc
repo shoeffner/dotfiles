@@ -58,10 +58,16 @@ au BufWritePre * %s/\s\+$//e
 
 
 " KEYMAP
+" move around on soft wrapped lines as if they were hard wrapped
 nnoremap j gj
 nnoremap k gk
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+" jump between splits without the C-W first
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-l> <C-w><C-l>
+nnoremap <C-h> <C-w><C-h>
+" nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+" nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 
 " PLUGIN: ale
@@ -80,6 +86,5 @@ highlight GitGutterDelete ctermfg=124
 
 
 " PLUGIN: python-mode
+let g:pymode_python = 'python3'
 let g:pymode_folding = 0
-let g:pymode_warnings = 0
-let g:pymode_lint = 0
