@@ -16,6 +16,7 @@ brew 'cmake'
 brew 'ctags'
 brew 'python3'
 brew 'pandoc'
+brew 'pandoc-citeproc'
 cask 'mactex'
 #mas 'Xcode', id: 497799835 # Will be done manually
 brew 'macvim', args: ['with-override-system-vim', 'with-python3']
@@ -35,6 +36,8 @@ brew 'gpg'
 cask 'keybase'
 cask 'skype'
 cask 'telegram-desktop'
+cask 'discord'
+cask 'steam'
 
 # Dependencies (just dumped)
 brew 'cairo'
