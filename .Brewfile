@@ -23,6 +23,7 @@ brew 'macvim', args: ['with-override-system-vim', 'with-python3']
 cask 'java'
 brew 'opencv3', args: ['HEAD', 'with-contrib', 'with-python3', 'with-ffmpeg']
 cask 'rstudio'
+cask 'miniconda'
 
 # PRODUCTIVITY
 cask 'filezilla'

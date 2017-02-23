@@ -1,5 +1,5 @@
 # ENVIRONMENT
-export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/sbin:/Users/shoeffner/miniconda3/bin:$PATH"
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
@@ -93,6 +93,7 @@ function mkvenv() {
     fi
 }
 
+
 # REMOVE PYTHON VENV
 # Takes the venv name as a parameter.
 function rmvenv() {
@@ -115,4 +116,45 @@ function rmvenv() {
         echo "Please provide the name of the virtual environment you want to delete."
     fi
 }
+
+
+# CREATE CONDA ENV
+# Takes the conda env name followed by the packages to install.
+function mkcenv() {
+    if [ -n "$1" ]; then
+        conda -y create -n $@
+        echo "source activate $1\nexport VIRTUAL_ENV=$1" >> .autoenv.zsh
+        echo "source deactivate $1\nunset VIRTUAL_ENV" >> .autoenv_leave.zsh
+        cd . # load autoenv directly
+        echo "Installed conda environment $1."
+        echo "Included ${@:2}."
+    else
+        echo "Please provide a name for the virtual environment."
+    fi
+}
+
+
+# REMOVE CONDA ENV
+# Takes the conda env name as a parameter.
+function rmvenv() {
+    if [ -n "$1" ]; then
+        conda -y remove -n $1 --all
+        if [ -f .autoenv.zsh ]; then
+            cat .autoenv.zsh | grep $1 > /dev/null
+            if [ $? -eq 0 ]; then
+                rm .autoenv.zsh
+                rm .autoenv_leave.zsh
+                source deactivate $1
+            else
+                echo "Wrong .autoenv.zsh detected. Won't delete it nor .autoenv_leave.zsh"
+            fi
+        else
+            echo "Can't find .autoenv.zsh, you might need to remove it yourself."
+        fi
+    else
+        echo "Please provide the name of the virtual environment you want to delete."
+    fi
+}
+
+
 

@@ -1,0 +1,5 @@
+ssl_verify: True
+changeps1: False
+channels:
+  - anaconda-fusion
+  - defaults

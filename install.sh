@@ -53,6 +53,7 @@ for link in \
     '.vim/bundle/Vundle.vim' \
     '.vimrc' \
     '.zshrc' \
+    '.condarc' \
     ; do
     lnifnotexists $link
 done
