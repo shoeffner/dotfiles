@@ -77,7 +77,7 @@ pip3 install -r $DOTFILES_DIR/python3_requirements.txt
 # Install VIM Plugins
 vim +PluginInstall +qall
 # Compile YouCompleteMe
-(cd ${HOME}/.vim/bundle/YouCompleteMe && ./install.py)
+(cd ${HOME}/.vim/bundle/YouCompleteMe && ./install.py --clang-completer)
 
 
 # Install settings
