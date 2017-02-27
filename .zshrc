@@ -1,12 +1,29 @@
 # ENVIRONMENT
-export PATH="/usr/local/sbin:/Users/shoeffner/miniconda3/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH:/Users/shoeffner/miniconda3/bin"
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 
 # ANTIGEN
 source /usr/local/opt/antigen/share/antigen/antigen.zsh
-antigen init ${HOME}/.antigenrc
+antigen use oh-my-zsh
+
+antigen bundles <<EOBUNDLES
+    git
+    pip
+    python
+    Tarrasch/zsh-autoenv
+    vi-mode
+    wd
+    zsh-users/zsh-syntax-highlighting
+    zsh-users/zsh-history-substring-search
+    zsh-users/zsh-autosuggestions
+EOBUNDLES
+
+antigen theme shoeffner/dotfiles fae.zsh-theme
+
+antigen apply
+#antigen init ${HOME}/.antigenrc
 
 # ALIASES
 eval "$(thefuck --alias)"
@@ -123,8 +140,8 @@ function rmvenv() {
 function mkcenv() {
     if [ -n "$1" ]; then
         conda -y create -n $@
-        echo "source activate $1\nexport VIRTUAL_ENV=$1" >> .autoenv.zsh
-        echo "source deactivate $1\nunset VIRTUAL_ENV" >> .autoenv_leave.zsh
+        echo "export VENV_OLDPS1=\$PS1\nsource activate $1\nexport VIRTUAL_ENV=$1" >> .autoenv.zsh
+        echo "export VIRTUAL_ENV=\"\"\nsource deactivate $1\nexport PS1=\$VENV_OLDPS1" >> .autoenv_leave.zsh
         cd . # load autoenv directly
         echo "Installed conda environment $1."
         echo "Included ${@:2}."
