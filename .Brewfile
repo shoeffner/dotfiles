@@ -5,40 +5,44 @@ tap 'homebrew/python'  # for numpy
 
 # SHELL
 brew 'zsh'
+brew 'ack'
+brew 'tldr'
 brew 'antigen'
 brew 'thefuck'
 brew 'ccat'
 brew 'htop'
 
 # PROGRAMMING & UTILITY
-brew 'git'
+#mas 'Xcode', id: 497799835 # Will be done manually
 brew 'cmake'
 brew 'ctags'
-brew 'python3'
+brew 'git'
+brew 'macvim', args: ['with-override-system-vim', 'with-python3']
+brew 'opencv3', args: ['HEAD', 'with-contrib', 'with-python3', 'with-ffmpeg']
 brew 'pandoc'
 brew 'pandoc-citeproc'
-cask 'mactex'
-#mas 'Xcode', id: 497799835 # Will be done manually
-brew 'macvim', args: ['with-override-system-vim', 'with-python3']
+brew 'python3'
+brew 'ruby'
 cask 'java'
-brew 'opencv3', args: ['HEAD', 'with-contrib', 'with-python3', 'with-ffmpeg']
-cask 'rstudio'
+cask 'mactex'
 cask 'miniconda'
+cask 'rstudio'
 
 # PRODUCTIVITY
 cask 'filezilla'
 cask 'google-chrome'
 cask 'libreoffice'
+cask 'splitshow'
 
 # OTHER
+brew 'gpg'
 cask 'amethyst'
 cask 'caffeine'
-brew 'gpg'
+cask 'discord'
 cask 'keybase'
 cask 'skype'
-cask 'telegram-desktop'
-cask 'discord'
 cask 'steam'
+cask 'telegram-desktop'
 
 # Dependencies (just dumped)
 brew 'cairo'
@@ -57,6 +61,7 @@ brew 'glib'
 brew 'gmp'
 brew 'gpg-agent'
 brew 'homebrew/science/r'
+brew 'icu4c'
 brew 'ilmbase'
 brew 'isl'
 brew 'jpeg'
