@@ -8,6 +8,11 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 source /usr/local/opt/antigen/share/antigen/antigen.zsh
 antigen init ${HOME}/.antigenrc
 
+# bash completions
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+eval "$(pandoc --bash-completion)"
+
 # ALIASES
 eval "$(thefuck --alias)"
 alias json='python -m json.tool | ccat'
