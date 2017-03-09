@@ -23,6 +23,9 @@ Plugin 'mhinz/vim-startify'
 
 Plugin 'klen/python-mode'
 
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+
 call vundle#end()
 
 
@@ -45,6 +48,7 @@ set laststatus=2  " PLUGIN: Airline
 au BufRead,BufNewFile *.ipynb setfiletype json
 au BufRead,BufNewFile .eslintrc setfiletype json
 au BufRead,BufNewFile *.pl setfiletype prolog
+au BufRead,BufNewFile *.beamer setfiletype tex
 
 
 " AUTOCOMMANDS: colorscheme by filetype
