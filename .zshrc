@@ -139,9 +139,9 @@ function rmvenv() {
 # Takes the conda env name followed by the packages to install.
 function mkcenv() {
     if [ -n "$1" ]; then
-        conda -y create -n $@
-        echo "export VENV_OLDPS1=\$PS1\nsource activate $1\nexport VIRTUAL_ENV=$1" >> .autoenv.zsh
-        echo "export VIRTUAL_ENV=\"\"\nsource deactivate $1\nexport PS1=\$VENV_OLDPS1" >> .autoenv_leave.zsh
+        conda create -n $@
+        echo "source activate $1" >> .autoenv.zsh
+        echo "source deactivate $1" >> .autoenv_leave.zsh
         cd . # load autoenv directly
         echo "Installed conda environment $1."
         echo "Included ${@:2}."
@@ -155,7 +155,7 @@ function mkcenv() {
 # Takes the conda env name as a parameter.
 function rmvenv() {
     if [ -n "$1" ]; then
-        conda -y remove -n $1 --all
+        conda remove -n $1 --all
         if [ -f .autoenv.zsh ]; then
             cat .autoenv.zsh | grep $1 > /dev/null
             if [ $? -eq 0 ]; then
