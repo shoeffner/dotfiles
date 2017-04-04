@@ -30,6 +30,7 @@ cask 'rstudio'
 
 # PRODUCTIVITY
 cask 'filezilla'
+cask 'gimp'
 cask 'google-chrome'
 cask 'libreoffice'
 cask 'splitshow'
