@@ -32,6 +32,7 @@ cask 'rstudio'
 cask 'filezilla'
 cask 'gimp'
 cask 'google-chrome'
+cask 'vivaldi'
 cask 'libreoffice'
 cask 'splitshow'
 
