@@ -1,7 +1,6 @@
 # REPOSITORIES
 tap 'caskroom/cask'
 tap 'homebrew/science'
-tap 'homebrew/python'  # for numpy
 
 # SHELL
 brew 'zsh'
@@ -13,7 +12,7 @@ brew 'ccat'
 brew 'htop'
 
 # PROGRAMMING & UTILITY
-#mas 'Xcode', id: 497799835 # Will be done manually
+# mas 'Xcode', id: 497799835 # Will be done manually
 brew 'cmake'
 brew 'ctags'
 brew 'git'
