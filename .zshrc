@@ -42,6 +42,7 @@ function update() {
     brew bundle --global
     brew upgrade
     antigen update
+    tldr --update
 }
 
 
@@ -161,6 +162,4 @@ function rmvenv() {
         echo "Please provide the name of the virtual environment you want to delete."
     fi
 }
-
-
 
