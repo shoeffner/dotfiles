@@ -59,7 +59,7 @@ au BufEnter,BufRead,BufNewFile,BufFilePost .*vimrc colorscheme CandyPaper
 
 " AUTOCOMMAND: remove trailing whitespace in files on write
 au BufWritePre * %s/\s\+$//e
-
+au BufWritePre,BufRead *.py PymodeLintAuto
 
 " KEYMAP
 " move around on soft wrapped lines as if they were hard wrapped
