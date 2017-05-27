@@ -17,6 +17,7 @@ eval "$(pandoc --bash-completion)"
 eval "$(thefuck --alias)"
 alias json='python -m json.tool | ccat'
 alias tag="[ -d .git ] && ctags -R -f ./.git/tags . || ctags -R ."
+alias dignews="dig +short -t txt istheinternetonfire.com"
 
 
 # VIM MODE
