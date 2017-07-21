@@ -99,3 +99,4 @@ let g:pymode_rope_lookup_project = 0
 
 " PLUGIN: vim-pandoc
 let g:pandoc#modules#disabled = ["folding"]
+let g:pandoc#syntax#conceal#blacklist = ["atx"]
