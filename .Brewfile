@@ -1,5 +1,6 @@
 # REPOSITORIES
 tap 'caskroom/cask'
+tap 'caskroom/fonts'
 tap 'homebrew/science'
 
 # SHELL
@@ -10,6 +11,7 @@ brew 'antigen'
 brew 'thefuck'
 brew 'ccat'
 brew 'htop'
+cask 'font-fira-code'
 
 # PROGRAMMING & UTILITY
 # mas 'Xcode', id: 497799835 # Will be done manually
