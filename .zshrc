@@ -143,7 +143,7 @@ function mkcenv() {
 
 # REMOVE CONDA ENV
 # Takes the conda env name as a parameter.
-function rmvenv() {
+function rmcenv() {
     if [ -n "$1" ]; then
         conda remove -n $1 --all
         if [ -f .autoenv.zsh ]; then
