@@ -36,11 +36,11 @@ bindkey -M vicmd 'j' history-substring-search-down
 # UPDATE COMMAND
 # updates brew and antigen
 function update() {
-    brew cleanup
     brew doctor
     brew update
     brew bundle --global
     brew upgrade
+    brew cleanup
     antigen update
     tldr --update
 }
