@@ -1,1 +1,5 @@
-*.swp
+*.sw[po]
+compile_commands.json
+.DS_Store
+*.*~
+*.*#
