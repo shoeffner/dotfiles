@@ -1,6 +1,11 @@
 # REPOSITORIES
 tap 'caskroom/cask'
 tap 'caskroom/fonts'
+tap 'caskroom/versions'
+tap 'homebrew/bundle'
+tap 'homebrew/core'
+tap 'homebrew/php'
+tap 'homebrew/python'
 tap 'homebrew/science'
 
 # SHELL
@@ -11,19 +16,29 @@ brew 'antigen'
 brew 'thefuck'
 brew 'ccat'
 brew 'htop'
-cask 'font-fira-code'
+cask 'caskroom/fonts/font-fira-code'
 
 # PROGRAMMING & UTILITY
 # mas 'Xcode', id: 497799835 # Will be done manually
+brew 'bazel'
+brew 'boost', args: ['c++11', 'with-icu4c']
 brew 'cmake'
+brew 'composer'
 brew 'ctags'
+brew 'doxygen', args: ['with-graphviz', 'with-llvm', 'with-qt']
+brew 'glade'
 brew 'git'
+brew 'gtksourceview3'
 brew 'macvim', args: ['with-override-system-vim', 'with-python3']
 brew 'opencv3', args: ['HEAD', 'with-contrib', 'with-python3', 'with-ffmpeg']
 brew 'pandoc'
 brew 'pandoc-citeproc'
+brew 'pandoc-crossref'
+brew 'homebrew/php/php71'
+brew 'homebrew/php/phpunit'
 brew 'python3'
 brew 'ruby'
+brew 'valgrind', args: ['HEAD']
 cask 'java'
 cask 'mactex'
 cask 'miniconda'
@@ -32,14 +47,23 @@ cask 'rstudio'
 # PRODUCTIVITY
 cask 'filezilla'
 cask 'gimp'
-cask 'google-chrome'
-cask 'vivaldi'
 cask 'libreoffice'
 cask 'splitshow'
+
+# BROWSERS
+cask 'brave'
+cask 'caskroom/versions/firefox-beta'
+cask 'google-chrome'
+cask 'opera'
+cask 'qutebrowser'
+cask 'torbrowser'
+cask 'vivaldi'
+
 
 # OTHER
 brew 'gpg'
 cask 'amethyst'
+cask 'android-file-transfer'
 cask 'caffeine'
 cask 'discord'
 cask 'keybase'
