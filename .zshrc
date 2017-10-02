@@ -1,5 +1,5 @@
 # ENVIRONMENT
-export PATH="/usr/local/sbin:$PATH:/Users/shoeffner/miniconda3/bin"
+export PATH="/usr/local/sbin:$PATH:$HOME/miniconda3/bin:$HOME/Projects/cpplint"
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export LC_ALL='en_US.utf-8'
