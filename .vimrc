@@ -53,9 +53,9 @@ au BufRead,BufNewFile *.ipynb setfiletype json
 au BufRead,BufNewFile .eslintrc setfiletype json
 au BufRead,BufNewFile *.pl setfiletype prolog
 au BufRead,BufNewFile *.beamer setfiletype tex
-au BufRead,BufNewFile *.cpp set tabstop=2
-au BufRead,BufNewFile *.cpp set shiftwidth=2
-au BufRead,BufNewFile *.cpp set expandtab
+au BufRead,BufNewFile *.cpp,*.hpp,*.h set tabstop=2
+au BufRead,BufNewFile *.cpp,*.hpp,*.h set shiftwidth=2
+au BufRead,BufNewFile *.cpp,*.hpp,*.h set expandtab
 
 
 " AUTOCOMMANDS: colorscheme by filetype
