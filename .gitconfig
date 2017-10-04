@@ -14,3 +14,14 @@
 	enabled = true
 [core]
     excludesfile = /Users/shoeffner/.gitignore_global
+[url "git@github.com:"]
+	insteadOf = "gh:"
+	insteadOf = "git://github.com"
+	pushInsteadOf = "github:"
+	pushInsteadOf = "git://github.com/"
+	pushInsteadOf = "https://github.com/"
+[url "git@gist.github.com:"]
+	insteadOf = "gst:"
+	pushInsteadOf = "gist:"
+	pushInsteadOf = "git://gist.github.com/"
+	pushInsteadOf = "https://gist.github.com/"
