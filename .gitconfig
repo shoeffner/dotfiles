@@ -1,0 +1,16 @@
+[color "diff"]
+	old = red strike
+	new = green
+[alias]
+	st = status -sb
+	slog = log --pretty='format:%C(green)%h%Creset %C(green dim)%aI%Creset %C(magenta)%s%Creset%n        %C(yellow)%aN <%ae>%Creset %C(cyan)[%G?% GS]%Creset' --graph
+[commit]
+	gpgsign = true
+[user]
+	signingkey = 487EBDD5
+	name = Sebastian Höffner
+	email = info@sebastian-hoeffner.de
+[rerere]
+	enabled = true
+[core]
+    excludesfile = /Users/shoeffner/.gitignore_global
