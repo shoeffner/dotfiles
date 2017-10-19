@@ -3,3 +3,6 @@ compile_commands.json
 .DS_Store
 *.*~
 *.*#
+.autoenv*
+.ycm_extra_conf.py
+CPPLINT.cfg

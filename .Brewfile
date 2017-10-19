@@ -45,6 +45,11 @@ cask 'mactex'
 cask 'miniconda'
 cask 'rstudio'
 
+# PROGRAMMING LIBRARIES
+brew 'boost', args: ['with-icu4c', 'c++11']
+brew 'dlib', args: ['with-openblas', 'with-x11']
+brew 'opencv'
+
 # PRODUCTIVITY
 cask 'filezilla'
 cask 'gimp'

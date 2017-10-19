@@ -6,7 +6,6 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
-
 " Plugin 'w0rp/ale'
 
 " Plugin 'elzr/vim-json'
@@ -80,6 +79,15 @@ nnoremap <C-h> <C-w><C-h>
 " nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 " nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
+" PLUGIN: netrw
+" Thanks @George Ornbo https://shapeshed.com/vim-netrw/
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
+let g:netrw_browse_split = 2
+let g:netrw_winsize = 10
+
+" PLUGIN: YCM
+let g:ycm_confirm_extra_conf = 0
 
 " PLUGIN: ale
 let g:ale_sign_column_always = 1
