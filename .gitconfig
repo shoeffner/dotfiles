@@ -3,7 +3,7 @@
 	new = green
 [alias]
 	st = status -sb
-	slog = log --pretty='format:%C(green)%h%Creset %C(green dim)%aI%Creset %C(magenta)%s%Creset%n        %C(yellow)%aN <%ae>%Creset %C(cyan)[%G?% GS]%Creset' --graph
+	slog = log --pretty='format:%C(green)%h%Creset %C(cyan)%aI%Creset %C(magenta)%s%Creset%n        %C(yellow)%aN <%ae>%Creset %C(green dim)[%G?% GS]%Creset' --graph
 [commit]
 	gpgsign = true
 [user]
