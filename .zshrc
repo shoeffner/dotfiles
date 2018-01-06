@@ -1,8 +1,9 @@
 # ENVIRONMENT
-export PATH="/usr/local/sbin:$PATH:$HOME/miniconda3/bin:$HOME/Projects/cpplint"
-export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+export PATH="/usr/local/sbin:$PATH:/usr/local/miniconda3/bin"
+export JAVA_HOME=$(/usr/libexec/java_home)
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export LC_ALL='en_US.utf-8'
+export LANG='en_US.utf-8'
 
 
 # ANTIGEN
@@ -42,6 +43,8 @@ function update() {
     brew bundle --global
     brew upgrade
     brew cleanup
+    brew cask upgrade
+    brew cask cleanup
     antigen update
     tldr --update
 }
@@ -59,7 +62,7 @@ function fixme() {
 function mkipykernel() {
     if [ -n $VIRTUAL_ENV ]; then
         venv=${VIRTUAL_ENV##*/}
-        python -m ipykernel install --user --name ${venv} --display-name "${venv} ($(python --version))"
+        python -m ipykernel install --user --name "${venv}" --display-name "${venv} ($(python --version))"
     else
         echo "Can not create ipykernel if not in a virtual environment."
     fi
@@ -95,7 +98,7 @@ function mkvenv() {
 
         echo "Installed virtual environment to ${venvpath}."
         echo "To add opencv3 to it, run:"
-        echo "echo /usr/local/opt/opencv3/lib/python3.6/site-packages >> ${venvpath}/lib/python3.6/site-packages/opencv3.pth"
+        echo "echo /usr/local/opt/opencv/lib/python3.6/site-packages >> ${venvpath}/lib/python3.6/site-packages/opencv3.pth"
     else
         echo "Please provide a name for the virtual environment."
     fi

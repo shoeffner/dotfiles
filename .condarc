@@ -1,6 +1,7 @@
 ssl_verify: true
 changeps1: true
 channels:
+  - rdonnelly
   - conda-forge
   - anaconda-fusion
   - defaults
