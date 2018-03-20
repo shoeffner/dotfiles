@@ -4,6 +4,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export LC_ALL='en_US.utf-8'
 export LANG='en_US.utf-8'
+export HOMEBREW_EDITOR=vim
 
 
 # ANTIGEN
@@ -15,11 +16,13 @@ autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 eval "$(pandoc --bash-completion)"
 
+
 # ALIASES
 eval "$(thefuck --alias)"
-alias json='python -m json.tool | ccat'
+alias json='python -m json.tool | less'
 alias tag="[ -d .git ] && ctags -R -f ./.git/tags . || ctags -R ."
 alias dignews="dig +short -t txt istheinternetonfire.com"
+alias gcm="git checkout master"
 
 
 # VIM MODE
@@ -167,3 +170,8 @@ function rmcenv() {
     fi
 }
 
+
+function checktap() {
+    TAP_PREFIX=$(brew --prefix)/Homebrew/Library/Taps
+    ls $TAP_PREFIX/$TAP/Formula/*.rb 2>/dev/null || ls $TAP_PREFIX/$1/*.rb 2>/dev/null | xargs -I{} basename {} .rb
+}
