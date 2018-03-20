@@ -1,6 +1,6 @@
 # Configuration
-PROJECTS_DIR=${HOME}/Projects
-DOTFILES_DIR=$PROJECTS_DIR/dotfiles
+PROJECTS_DIR="${HOME}/Projects"
+DOTFILES_DIR="${PROJECTS_DIR}/dotfiles"
 
 
 # Runs a command and echos an error if it was not successful.
@@ -27,52 +27,41 @@ if [ $? -ne 0 ]; then
 fi
 
 
-# Install git if not installed.
-checked 'Git not installed. Installing...' git --version
-if [ $? -ne 0 ]; then
-    brew install git || (echo 'Can not install git.' && exit 1)
-fi
-
-
 # Clone dotfiles repository properly.
-mkdir -p $PROJECTS_DIR
-if [ ! -d $DOTFILES_DIR ]; then
-    git clone --recursive https://github.com/shoeffner/dotfiles.git $DOTFILES_DIR
+mkdir -p ${PROJECTS_DIR}
+if [ ! -d ${DOTFILES_DIR} ]; then
+    git clone --recursive https://github.com/shoeffner/dotfiles.git ${DOTFILES_DIR}
 fi
 
 
 # Link dotfiles to their proper locations.
 function lnifnotexists() {
-    [ -L ${HOME}/$1 ] || (mkdir -p ${HOME}/$(dirname $1) && ln -s $DOTFILES_DIR/$1 ~/$1)
+    [ -L "${HOME}/$1" ] || (mkdir -p "${HOME}/$(dirname $1)" && ln -s "${DOTFILES_DIR}/$1" "${HOME}/$1")
 }
 
 for link in \
-    '.antigenrc' \
     '.Brewfile' \
+    '.antigenrc' \
+    '.gitconfig' \
+    '.inputrc' \
     '.jupyter/nbconfig/notebook.json' \
+    '.ssh/config' \
     '.vim/bundle/Vundle.vim' \
     '.vimrc' \
+    '.warprc' \
     '.zshrc' \
-    '.condarc' \
     ; do
     lnifnotexists $link
 done
-
+ln -s "${DOTFILES_DIR}/.gitignore" "${HOME}/.gitignore_global"
 
 # Install brew bundles
-# FIXME @shoeffner: Due to a bug only brew install works for python at the moment
-if brew ls --versions myformula > /dev/null; then
-    brew install python3
-fi
 brew bundle --global
 
 
-# Install Python requirements
-checked 'Python not linked propertly. Forcing links.' python3 --version
-if [ $? -ne 0 ]; then
-    brew link python3 --force
-fi
-pip3 install -r $DOTFILES_DIR/python3_requirements.txt
+# Link Python and install Python requirements
+brew link --overwrite python
+pip3 install --upgrade pip setuptools wheel
 
 
 # Install VIM Plugins
@@ -81,12 +70,8 @@ vim +PluginInstall +qall
 (cd ${HOME}/.vim/bundle/YouCompleteMe && ./install.py --clang-completer)
 
 
-# Install settings
-git config --global color.diff.old "red strike"
-git config --global color.diff.new "green"
-git config --global alias.st "status -sb"
-git config --global alias.slog "log --pretty='format:%C(green)%h%Creset %C(green dim)%aI%Creset %C(magenta)%s%Creset%n        %C(yellow)%aN <%ae>%Creset %C(cyan)[%G?% GS]%Creset'"
-git config --global credential.helper osxkeychain
+# Write defaults
+defaults write com.apple.CrashReporter UseUNC 1
 
 
 # Prompt about other things:
@@ -98,11 +83,6 @@ Almost everything is set up! Here are some notes on what to do:
 - Remember to set up your shell properly to use /bin/zsh
 - Start Caffeine
 - Start Amethyst (and give it accesibility rights)
-
-
-Some git setups to do:
-git config --global user.email "info@sebastian-hoeffner.de"
-git config --global user.name "Sebastian Höffner"
 
 
 To handle gpg keys (assuming keybase is up and running):
