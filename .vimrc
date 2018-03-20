@@ -59,7 +59,7 @@ au BufRead,BufNewFile *.cpp,*.hpp,*.h set expandtab
 
 " AUTOCOMMANDS: colorscheme by filetype
 au BufEnter,BufRead,BufNewFile,BufFilePost * colorscheme CandyPaper
-au BufEnter,BufRead,BufNewFile,BufFilePost *.js colorscheme blazer
+"au BufEnter,BufRead,BufNewFile,BufFilePost *.js colorscheme blazer
 au BufEnter,BufRead,BufNewFile,BufFilePost .*vimrc colorscheme CandyPaper
 
 
@@ -110,6 +110,7 @@ let g:pymode_folding = 0
 let g:pymode_rope = 0
 let g:pymode_rope_autoimport = 0
 let g:pymode_rope_lookup_project = 0
+let g:pymode_lint_ignore = ['E501']
 
 
 " PLUGIN: vim-pandoc
