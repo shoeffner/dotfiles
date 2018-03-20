@@ -13,7 +13,7 @@
 [rerere]
 	enabled = true
 [core]
-    excludesfile = /Users/shoeffner/.gitignore_global
+	excludesfile = /Users/shoeffner/.gitignore_global
 [url "git@github.com:"]
 	insteadOf = "gh:"
 	insteadOf = "git://github.com"
@@ -25,3 +25,5 @@
 	pushInsteadOf = "gist:"
 	pushInsteadOf = "git://gist.github.com/"
 	pushInsteadOf = "https://gist.github.com/"
+[pager]
+	branch = false
