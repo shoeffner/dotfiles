@@ -169,9 +169,3 @@ function rmcenv() {
         echo "Please provide the name of the virtual environment you want to delete."
     fi
 }
-
-
-function checktap() {
-    TAP_PREFIX=$(brew --prefix)/Homebrew/Library/Taps
-    ls $TAP_PREFIX/$TAP/Formula/*.rb 2>/dev/null || ls $TAP_PREFIX/$1/*.rb 2>/dev/null | xargs -I{} basename {} .rb
-}
