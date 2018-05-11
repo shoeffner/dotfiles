@@ -72,6 +72,7 @@ vim +PluginInstall +qall
 
 # Write defaults
 defaults write com.apple.CrashReporter UseUNC 1
+defaults write com.apple.finder AppleShowAllFiles 1
 
 
 # Prompt about other things:
