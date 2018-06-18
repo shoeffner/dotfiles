@@ -89,83 +89,18 @@ function rmipykernel() {
 }
 
 
-# CREATE PYTHON VENV
+# CREATE PYTHON PIPENV
 # Takes the venv name and all but the filepath parameter of python's venv module as parameters.
 function mkvenv() {
-    if [ -n "$1" ]; then
-        venvpath=${HOME}/.virtualenvs/$1
-        /usr/local/bin/python3.6 -m venv ${venvpath} ${@:2}
-        echo "source \${HOME}/.virtualenvs/$1/bin/activate" >> .autoenv.zsh
-        echo "deactivate" >> .autoenv_leave.zsh
-        cd . # load autoenv directly
-
-        echo "Installed virtual environment to ${venvpath}."
-        echo "To add opencv3 to it, run:"
-        echo "echo /usr/local/opt/opencv/lib/python3.6/site-packages >> ${venvpath}/lib/python3.6/site-packages/opencv3.pth"
-    else
-        echo "Please provide a name for the virtual environment."
-    fi
+    pipenv lock
+    echo "unsetopt AUTO_CD\nsource $(pipenv --venv)/bin/activate" > .autoenv.zsh
+    echo "deactivate\nsetopt AUTO_CD" > .autoenv_leave.zsh
+    cd .  # activate venv
 }
 
 
-# REMOVE PYTHON VENV
+# REMOVE PYTHON PIPENV
 # Takes the venv name as a parameter.
 function rmvenv() {
-    if [ -n "$1" ]; then
-        venvpath=${HOME}/.virtualenvs/$1
-        rm -rf ${venvpath}
-        if [ -f .autoenv.zsh ]; then
-            cat .autoenv.zsh | grep $1 > /dev/null
-            if [ $? -eq 0 ]; then
-                rm .autoenv.zsh
-                rm .autoenv_leave.zsh
-                deactivate
-            else
-                echo "Wrong .autoenv.zsh detected. Won't delete it nor .autoenv_leave.zsh"
-            fi
-        else
-            echo "Can't find .autoenv.zsh, you might need to remove it yourself."
-        fi
-    else
-        echo "Please provide the name of the virtual environment you want to delete."
-    fi
-}
-
-
-# CREATE CONDA ENV
-# Takes the conda env name followed by the packages to install.
-function mkcenv() {
-    if [ -n "$1" ]; then
-        conda create -n $@
-        echo "source activate $1" >> .autoenv.zsh
-        echo "source deactivate $1" >> .autoenv_leave.zsh
-        cd . # load autoenv directly
-        echo "Installed conda environment $1."
-        echo "Included ${@:2}."
-    else
-        echo "Please provide a name for the virtual environment."
-    fi
-}
-
-
-# REMOVE CONDA ENV
-# Takes the conda env name as a parameter.
-function rmcenv() {
-    if [ -n "$1" ]; then
-        conda remove -n $1 --all
-        if [ -f .autoenv.zsh ]; then
-            cat .autoenv.zsh | grep $1 > /dev/null
-            if [ $? -eq 0 ]; then
-                rm .autoenv.zsh
-                rm .autoenv_leave.zsh
-                source deactivate $1
-            else
-                echo "Wrong .autoenv.zsh detected. Won't delete it nor .autoenv_leave.zsh"
-            fi
-        else
-            echo "Can't find .autoenv.zsh, you might need to remove it yourself."
-        fi
-    else
-        echo "Please provide the name of the virtual environment you want to delete."
-    fi
+    rm -rf $(pipenv --venv)
 }
