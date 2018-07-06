@@ -94,14 +94,17 @@ function rmipykernel() {
 # Takes the venv name and all but the filepath parameter of python's venv module as parameters.
 function mkvenv() {
     pipenv lock
-    echo "unsetopt AUTO_CD\nsource $(pipenv --venv)/bin/activate" > .autoenv.zsh
-    echo "deactivate\nsetopt AUTO_CD" > .autoenv_leave.zsh
-    cd .  # activate venv
+    echo "unsetopt AUTO_CD\nsource $(pipenv --venv)/bin/activate" > $(pipenv --where)/.autoenv.zsh
+    echo "deactivate\nsetopt AUTO_CD" > $(pipenv --where)/.autoenv_leave.zsh
+    cd .
 }
 
 
 # REMOVE PYTHON PIPENV
 # Takes the venv name as a parameter.
 function rmvenv() {
+    source $(pipenv --where)/.autoenv_leave.zsh
+    rm $(pipenv --where)/.autoenv.zsh
+    rm $(pipenv --where)/.autoenv_leave.zsh
     rm -rf $(pipenv --venv)
 }
