@@ -27,6 +27,7 @@ brew 'pandoc'
 brew 'pandoc-citeproc'
 brew 'pandoc-crossref'
 brew 'php'
+brew 'postgresql', args: ['with-python']
 brew 'python'
 brew 'poppler'
 cask 'jabref'
