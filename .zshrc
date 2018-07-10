@@ -51,8 +51,8 @@ function update() {
     brew cleanup
     brew cask upgrade
     brew cask cleanup
-    antigen update
     tldr --update
+    antigen update
     vim +PluginUpdate +qall
 }
 
