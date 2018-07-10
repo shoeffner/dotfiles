@@ -23,6 +23,9 @@ alias json='python -m json.tool | less'
 alias tag="[ -d .git ] && ctags -R -f ./.git/tags . || ctags -R ."
 alias dignews="dig +short -t txt istheinternetonfire.com"
 alias gcm="git checkout master"
+alias pg="pass generate -c -n"
+alias p="pass"
+alias pc="pass -c"
 
 
 # VIM MODE
