@@ -8,7 +8,7 @@ export HOMEBREW_EDITOR=vim
 
 
 # ANTIGEN
-source /usr/local/opt/antigen/share/antigen/antigen.zsh
+source /usr/local/share/antigen/antigen.zsh
 antigen init ${HOME}/.antigenrc
 
 # bash completions
