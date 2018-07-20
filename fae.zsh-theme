@@ -9,7 +9,7 @@ fi
 
 function virtual_env() {
     if [ -n "$VIRTUAL_ENV" ]; then
-        print ${VIRTUAL_ENV##*/}
+        print "$(echo "${VIRTUAL_ENV##*/}" | rev | cut -c10- | rev)"
     else
         print ""
     fi
