@@ -4,6 +4,7 @@
 [alias]
 	st = status -sb
 	slog = log --pretty='format:%C(green)%h%Creset %C(cyan)%aI%Creset %C(magenta)%s%Creset%n        %C(yellow)%aN <%ae>%Creset %C(green dim)[%G?% GS]%Creset' --graph
+	ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ >> .gitignore ;}; gi"
 [commit]
 	gpgsign = true
 [user]
