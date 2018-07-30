@@ -26,5 +26,8 @@
 	pushInsteadOf = "gist:"
 	pushInsteadOf = "git://gist.github.com/"
 	pushInsteadOf = "https://gist.github.com/"
+[url "git@gitlab.informatik.uni-bremen.de:"]
+	insteadOf = "ub:"
+	pushInsteadOf = "https://gitlab.informatik.uni-bremen.de/"
 [pager]
 	branch = false
