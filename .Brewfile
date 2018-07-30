@@ -17,6 +17,7 @@ cask 'caskroom/fonts/font-fira-code'
 # mas 'Xcode', id: 497799835 # Will be done manually
 brew 'bazel'
 brew 'boost', args: ['c++11', 'with-icu4c']
+brew 'clozure-cl'
 brew 'cmake'
 brew 'ctags'
 brew 'doxygen', args: ['with-graphviz', 'with-llvm', 'with-qt']
