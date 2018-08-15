@@ -21,6 +21,7 @@ eval "$(pandoc --bash-completion)"
 eval "$(thefuck --alias)"
 alias json='python -m json.tool | less'
 alias tag="[ -d .git ] && ctags -R -f ./.git/tags . || ctags -R ."
+alias dc="docker-compose"
 alias dignews="dig +short -t txt istheinternetonfire.com"
 alias gcm="git checkout master"
 alias pg="pass generate -c -n"
@@ -39,6 +40,15 @@ bindkey '^h' backward-delete-char
 bindkey '^r' history-incremental-search-backward
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+
+
+# PRUNE DOCKER
+# prunes docker containers, images, and volumes
+function dprune() {
+    for cmd in container image volume; do
+        yes | docker ${cmd} prune || true
+    done
+}
 
 
 # UPDATE COMMAND
