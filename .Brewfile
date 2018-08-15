@@ -28,8 +28,9 @@ brew 'pandoc'
 brew 'pandoc-citeproc'
 brew 'pandoc-crossref'
 brew 'php'
-brew 'postgresql', args: ['with-python']
 brew 'python'
+brew 'postgresql', args: ['with-python']
+brew 'pipenv'
 brew 'poppler'
 cask 'jabref'
 cask 'java'
