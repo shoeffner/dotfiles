@@ -48,9 +48,8 @@ function update() {
     brew update
     brew bundle --global
     brew upgrade
-    brew cleanup
     brew cask upgrade
-    brew cask cleanup
+    brew cleanup
     tldr --update
     antigen update
     vim +PluginUpdate +qall
