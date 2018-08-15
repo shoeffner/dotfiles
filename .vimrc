@@ -6,24 +6,11 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
-" Plugin 'w0rp/ale'
-
-" Plugin 'elzr/vim-json'
-" Plugin 'chrisbra/csv.vim'
-
 Plugin 'flazz/vim-colorschemes'
-" Plugin 'yosiat/oceanic-next-vim'
-
-" Plugin 'vim-airline/vim-airline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
-
-" Plugin 'mhinz/vim-startify'
-
 Plugin 'klen/python-mode'
-
-" Plugin 'vim-pandoc/vim-pandoc'
-" Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'tpope/vim-surround'
 
 call vundle#end()
 
