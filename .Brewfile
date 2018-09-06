@@ -4,22 +4,20 @@ tap 'caskroom/fonts'
 tap 'homebrew/core'
 
 # SHELL
-brew 'zsh'
 brew 'ack'
-brew 'tldr'
 brew 'antigen'
-brew 'thefuck'
 brew 'htop'
+brew 'thefuck'
+brew 'tldr'
 brew 'with-readline'
-cask 'caskroom/fonts/font-fira-code'
+brew 'zsh'
 
 # PROGRAMMING & UTILITY
 # mas 'Xcode', id: 497799835 # Will be done manually
-brew 'bazel'
-brew 'boost', args: ['c++11', 'with-icu4c']
-brew 'clozure-cl'
 brew 'cmake'
 brew 'ctags'
+brew 'docker-completion'
+brew 'docker-compose-completion'
 brew 'doxygen', args: ['with-graphviz', 'with-llvm', 'with-qt']
 brew 'git'
 brew 'macvim', args: ['with-override-system-vim', 'with-python3']
@@ -28,15 +26,19 @@ brew 'pandoc'
 brew 'pandoc-citeproc'
 brew 'pandoc-crossref'
 brew 'php'
-brew 'python'
-brew 'postgresql', args: ['with-python']
 brew 'pipenv'
 brew 'poppler'
+brew 'python'
+cask 'docker'
+cask 'etcher'
 cask 'jabref'
 cask 'java'
 cask 'mactex'
+cask 'mono-mdk'
 cask 'rstudio'
-cask 'etcher'
+cask 'unity'
+cask 'visual-studio'
+cask 'visual-studio-code'
 
 # BROWSERS
 cask 'brave'
@@ -48,16 +50,19 @@ cask 'torbrowser'
 cask 'vivaldi'
 
 # PRODUCTIVITY
+brew 'imagemagick'
 brew 'wget'
 cask 'filezilla'
 cask 'libreoffice'
 cask 'splitshow'
+cask 'xquartz'
 
 # OTHER
 brew 'gpg'
 cask 'amethyst'
 cask 'caffeine'
 cask 'discord'
-cask 'keybase'
-cask 'steam'
+cask 'font-fira-code'
+cask 'protege'
+cask 'slack'
 cask 'telegram-desktop'
