@@ -45,7 +45,7 @@ bindkey -M vicmd 'j' history-substring-search-down
 # PRUNE DOCKER
 # prunes docker containers, images, and volumes
 function dprune() {
-    for cmd in container image volume; do
+    for cmd in container image volume network; do
         yes | docker ${cmd} prune || true
     done
 }
