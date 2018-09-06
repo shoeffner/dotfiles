@@ -29,9 +29,7 @@ set relativenumber
 set number
 set ruler
 set incsearch
-" set autoread
 set t_Co=256
-set laststatus=2  " PLUGIN: Airline
 
 
 " AUTOCOMMANDS: filetypes by extension
@@ -47,8 +45,6 @@ au BufRead,BufNewFile *.cpp,*.hpp,*.h set expandtab
 
 " AUTOCOMMANDS: colorscheme by filetype
 au BufEnter,BufRead,BufNewFile,BufFilePost * colorscheme CandyPaper
-"au BufEnter,BufRead,BufNewFile,BufFilePost *.js colorscheme blazer
-au BufEnter,BufRead,BufNewFile,BufFilePost .*vimrc colorscheme CandyPaper
 
 
 " AUTOCOMMAND: remove trailing whitespace in files on write
