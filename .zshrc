@@ -11,7 +11,8 @@ export HOMEBREW_EDITOR=vim
 source /usr/local/share/antigen/antigen.zsh
 antigen init ${HOME}/.antigenrc
 
-# bash completions
+# shell completions
+fpath=(${HOME}/.zsh/completions $fpath)
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 eval "$(pandoc --bash-completion)"
@@ -25,9 +26,12 @@ alias dc="docker-compose"
 alias dignews="dig +short -t txt istheinternetonfire.com"
 alias gcm="git checkout master"
 alias pg="pass generate -c -n"
-alias p="pass"
 alias pc="pass -c"
 
+# Projects directory
+function p() {
+    cd ${HOME}/Projects/$1
+}
 
 # VIM MODE
 set -o vi

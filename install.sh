@@ -50,6 +50,7 @@ for link in \
     '.vimrc' \
     '.warprc' \
     '.zshrc' \
+    '.zsh' \
     ; do
     lnifnotexists $link
 done
