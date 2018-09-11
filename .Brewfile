@@ -59,6 +59,7 @@ cask 'xquartz'
 
 # OTHER
 brew 'gpg'
+brew 'pass'
 cask 'amethyst'
 cask 'caffeine'
 cask 'discord'
