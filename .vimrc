@@ -6,11 +6,10 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'flazz/vim-colorschemes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'klen/python-mode'
 Plugin 'tpope/vim-surround'
+Plugin 'rafi/awesome-vim-colorschemes'
 
 call vundle#end()
 
@@ -33,7 +32,7 @@ set t_Co=256
 
 
 " set colorscheme
-colorscheme CandyPaper
+colorscheme deus
 
 
 " AUTOCOMMANDS
