@@ -112,8 +112,30 @@ function rmipykernel() {
 # Takes the venv name and all but the filepath parameter of python's venv module as parameters.
 function mkvenv() {
     pipenv lock
-    echo "unsetopt AUTO_CD\nsource $(pipenv --venv)/bin/activate" > $(pipenv --where)/.autoenv.zsh
-    echo "deactivate\nsetopt AUTO_CD" > $(pipenv --where)/.autoenv_leave.zsh
+    DIR=$(pipenv --where)
+    cat << ENTER_EOF > ${DIR}/.autoenv.zsh
+unsetopt AUTO_CD
+export PIPENV_VERBOSITY=-1
+source $(pipenv --venv)/bin/activate
+
+if [ -f ${DIR}/.env ]; then
+    while IFS="" read -r ev || [ -n "\$ev" ]; do
+        export \$ev
+    done < ${DIR}/.env
+fi
+ENTER_EOF
+
+    cat << LEAVE_EOF > ${DIR}/.autoenv_leave.zsh
+deactivate
+unset PIPENV_VERBOSITY
+setopt AUTO_CD
+
+if [ -f ${DIR}/.env ]; then
+    while IFS="" read -r ev || [ -n "\$ev" ]; do
+        unset \${ev%=*}
+    done < ${DIR}/.env
+fi
+LEAVE_EOF
     cd .
 }
 
