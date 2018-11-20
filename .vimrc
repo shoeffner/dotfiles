@@ -32,7 +32,11 @@ set incsearch
 set t_Co=256
 
 
-" AUTOCOMMANDS: filetypes by extension
+" set colorscheme
+colorscheme CandyPaper
+
+
+" AUTOCOMMANDS
 au BufRead,BufNewFile *.ipynb setfiletype json
 au BufRead,BufNewFile .eslintrc setfiletype json
 au BufRead,BufNewFile *.pl setfiletype prolog
@@ -41,15 +45,11 @@ au BufRead,BufNewFile *.launch setfiletype xml
 au BufRead,BufNewFile *.cpp,*.hpp,*.h set tabstop=2
 au BufRead,BufNewFile *.cpp,*.hpp,*.h set shiftwidth=2
 au BufRead,BufNewFile *.cpp,*.hpp,*.h set expandtab
+au BufEnter,BufRead,BufNewFile,BufFilePost *.md set spell
 
 
-" AUTOCOMMANDS: colorscheme by filetype
-au BufEnter,BufRead,BufNewFile,BufFilePost * colorscheme CandyPaper
-
-
-" AUTOCOMMAND: remove trailing whitespace in files on write
+" remove trailing whitespace in files on write
 au BufWritePre * %s/\s\+$//e
-" au BufWritePre,BufRead *.py PymodeLintAuto
 
 " KEYMAP
 " move around on soft wrapped lines as if they were hard wrapped
