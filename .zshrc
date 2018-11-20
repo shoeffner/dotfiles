@@ -20,7 +20,9 @@ eval "$(pandoc --bash-completion)"
 
 # ALIASES
 eval "$(thefuck --alias)"
-alias json='python -m json.tool | less'
+function json() {
+    python -m json.tool $1 | less
+}
 alias tag="[ -d .git ] && ctags -R -f ./.git/tags . || ctags -R ."
 alias dc="docker-compose"
 alias dignews="dig +short -t txt istheinternetonfire.com"
