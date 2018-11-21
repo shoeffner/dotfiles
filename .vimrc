@@ -9,6 +9,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround'
+Plugin 'python-mode/python-mode'
 Plugin 'rafi/awesome-vim-colorschemes'
 
 call vundle#end()
@@ -101,6 +102,7 @@ let g:pymode_rope = 0
 let g:pymode_rope_autoimport = 0
 let g:pymode_rope_lookup_project = 0
 let g:pymode_lint_ignore = ['E501']
+au BufRead *.py PymodeLint
 
 
 " PLUGIN: vim-pandoc
