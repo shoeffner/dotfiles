@@ -16,6 +16,12 @@
 	enabled = true
 [core]
 	excludesfile = /Users/shoeffner/.gitignore_global
+[url "git@gitlab.com:"]
+	insteadOf = "gl:"
+	insteadOf = "git://gitlab.com"
+	pushInsteadOf = "gitlab:"
+	pushInsteadOf = "git://gitlab.com/"
+	pushInsteadOf = "https://gitlab.com/"
 [url "git@github.com:"]
 	insteadOf = "gh:"
 	insteadOf = "git://github.com"
