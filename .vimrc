@@ -37,8 +37,9 @@ colorscheme deus
 
 
 " AUTOCOMMANDS
-au BufRead,BufNewFile *.ipynb setfiletype json
-au BufRead,BufNewFile .eslintrc setfiletype json
+au BufRead,BufNewFile *.ipynb,Pipfile.lock,.eslintrc setfiletype json
+au BufRead,BufNewFile Pipfile setfiletype config
+au BufRead,BufNewFile Dockerfile* setfiletype Dockerfile
 au BufRead,BufNewFile *.pl setfiletype prolog
 au BufRead,BufNewFile *.beamer setfiletype tex
 au BufRead,BufNewFile *.launch setfiletype xml
@@ -103,6 +104,7 @@ let g:pymode_rope_autoimport = 0
 let g:pymode_rope_lookup_project = 0
 let g:pymode_lint_ignore = ['E501']
 au BufRead *.py PymodeLint
+au BufWritePre *.py PymodeLint
 
 
 " PLUGIN: vim-pandoc
