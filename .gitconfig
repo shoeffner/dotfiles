@@ -5,6 +5,8 @@
 	st = status -sb
 	slog = log --pretty='format:%C(green)%h%Creset %C(cyan)%aI%Creset %C(magenta)%s%Creset%n        %C(yellow)%aN <%ae>%Creset %C(green dim)[%G?% GS]%Creset' --graph
 	ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ >> .gitignore ;}; gi"
+	license = "!gl() { curl -L -s https://api.github.com/licenses/$@ | python3 -c \"import sys, json; print(json.load(sys.stdin)['body'].replace('[year]', str($(date +\"%Y\"))).replace('[fullname]', '$(git config user.name)'))\" > LICENSE ;}; gl"
+	licenses = "!gls() { curl -L -s https://api.github.com/licenses | python3 -c \"import sys, json; print(*list(e['key'] for e in json.load(sys.stdin)))\" ;}; gls"
 	co = checkout
 [commit]
 	gpgsign = true
