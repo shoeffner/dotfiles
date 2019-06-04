@@ -5,6 +5,8 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 export LC_ALL='en_US.utf-8'
 export LANG='en_US.utf-8'
 export HOMEBREW_EDITOR=vim
+export HOMEBREW_INSTALL_CLEANUP=1
+export DISPLAY=$(ipconfig getifaddr en0):0
 
 
 # ANTIGEN
