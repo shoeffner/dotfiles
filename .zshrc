@@ -113,17 +113,27 @@ function rmipykernel() {
 # CREATE PYTHON PIPENV
 # Takes the venv name and all but the filepath parameter of python's venv module as parameters.
 function mkvenv() {
-    pipenv lock
+    if [ -f Pipfile.lock ]; then
+        pipenv sync
+    else
+        pipenv lock
+    fi
     DIR=$(pipenv --where)
     cat << ENTER_EOF > ${DIR}/.autoenv.zsh
 unsetopt AUTO_CD
 export PIPENV_VERBOSITY=-1
-source $(pipenv --venv)/bin/activate
+source \$(pipenv --venv)/bin/activate
+DIR=\$(pipenv --where)
 
-if [ -f ${DIR}/.env ]; then
+if [ -f \${DIR}/.env ]; then
     while IFS="" read -r ev || [ -n "\$ev" ]; do
         export \$ev
-    done < ${DIR}/.env
+    done < \${DIR}/.env
+fi
+
+if [ -d \${DIR}/bin ]; then
+    export OLD_PATH=\${PATH}
+    export PATH=\${DIR}/bin:\${PATH}
 fi
 ENTER_EOF
 
@@ -132,10 +142,15 @@ deactivate
 unset PIPENV_VERBOSITY
 setopt AUTO_CD
 
-if [ -f ${DIR}/.env ]; then
+if [ -f \${OLDPWD}/.env ]; then
     while IFS="" read -r ev || [ -n "\$ev" ]; do
         unset \${ev%=*}
-    done < ${DIR}/.env
+    done < \${OLDPWD}/.env
+fi
+
+if [ -d ./bin ]; then
+    export PATH=\${OLD_PATH}
+    unset OLD_PATH
 fi
 LEAVE_EOF
     cd .
