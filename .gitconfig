@@ -8,6 +8,8 @@
 	license = "!gl() { curl -L -s https://api.github.com/licenses/$@ | python3 -c \"import sys, json; print(json.load(sys.stdin)['body'].replace('[year]', str($(date +\"%Y\"))).replace('[fullname]', '$(git config user.name)'))\" > LICENSE ; git add LICENSE ;}; gl"
 	licenses = "!gls() { curl -L -s https://api.github.com/licenses | python3 -c \"import sys, json; print(*list(e['key'] for e in json.load(sys.stdin)))\" ;}; gls"
 	co = checkout
+	web = instaweb --httpd=webrick
+	webstop = instaweb --httpd=webrick --stop
 [commit]
 	gpgsign = true
 [user]
