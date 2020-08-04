@@ -31,6 +31,8 @@ alias dignews="dig +short -t txt istheinternetonfire.com"
 alias gcm="git checkout master"
 alias pg="pass generate -c -n"
 alias pc="pass -c"
+alias myip="curl -s https://api.ipify.org/"
+alias cpip="myip | clipcopy"
 
 # Projects directory
 function p() {
