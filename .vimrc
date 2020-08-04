@@ -41,7 +41,7 @@ au BufRead,BufNewFile *.ipynb,Pipfile.lock,.eslintrc setfiletype json
 au BufRead,BufNewFile Pipfile setfiletype config
 au BufRead,BufNewFile Dockerfile* setfiletype Dockerfile
 au BufRead,BufNewFile *.pl setfiletype prolog
-au BufRead,BufNewFile *.beamer setfiletype tex
+au BufRead,BufNewFile *.beamer,*.cls setfiletype tex
 au BufRead,BufNewFile *.launch setfiletype xml
 au BufRead,BufNewFile *.cpp,*.hpp,*.h set tabstop=2
 au BufRead,BufNewFile *.cpp,*.hpp,*.h set shiftwidth=2
