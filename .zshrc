@@ -6,11 +6,8 @@ export LC_ALL='en_US.utf-8'
 export LANG='en_US.utf-8'
 export HOMEBREW_EDITOR=vim
 export HOMEBREW_INSTALL_CLEANUP=1
-# For ROS
-export OPENSSL_ROOT_DIR=/usr/local/opt/openssl@1.1
-export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:/usr/local/opt/qt:/usr/local/opt/qt5
-export ROS_DOMAIN_ID=71
-alias sros2="source install/local_setup.zsh"
+export DISPLAY=$(ipconfig getifaddr en0):0
+
 
 # ANTIGEN
 source /usr/local/share/antigen/antigen.zsh
@@ -187,7 +184,3 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="/usr/local/lib/ruby/gems/2.6.0/bin:/usr/local/opt/ruby/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
-
-
-# ROS (2> /dev/null to suppress connext warning)
-source ${HOME}/Projects/ros2-osx/setup.zsh 2> /dev/null
