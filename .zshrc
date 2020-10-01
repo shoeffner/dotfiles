@@ -128,17 +128,17 @@ function mkvenv() {
 unsetopt AUTO_CD
 export PIPENV_VERBOSITY=-1
 source \$(pipenv --venv)/bin/activate
-DIR=\$(pipenv --where)
+DIR="\$(pipenv --where)"
 
-if [ -f \${DIR}/.env ]; then
+if [ -f "\${DIR}/.env" ]; then
     while IFS="" read -r ev || [ -n "\$ev" ]; do
         export \$ev
-    done < \${DIR}/.env
+    done < "\${DIR}/.env"
 fi
 
-if [ -d \${DIR}/bin ]; then
+if [ -d "\${DIR}/bin" ]; then
     export OLD_PATH=\${PATH}
-    export PATH=\${DIR}/bin:\${PATH}
+    export PATH="\${DIR}/bin":\${PATH}
 fi
 ENTER_EOF
 

@@ -11,6 +11,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround'
 Plugin 'python-mode/python-mode'
 Plugin 'rafi/awesome-vim-colorschemes'
+Plugin 'mitsuhiko/vim-jinja'
 
 call vundle#end()
 
@@ -34,7 +35,6 @@ set t_Co=256
 
 " set colorscheme
 colorscheme deus
-
 
 " AUTOCOMMANDS
 au BufRead,BufNewFile *.ipynb,Pipfile.lock,.eslintrc setfiletype json
