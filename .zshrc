@@ -128,17 +128,17 @@ function mkvenv() {
 unsetopt AUTO_CD
 export PIPENV_VERBOSITY=-1
 source \$(pipenv --venv)/bin/activate
-DIR="\$(pipenv --where)"
+PIPENV_WHERE_DIR="\$(pipenv --where)"
 
-if [ -f "\${DIR}/.env" ]; then
+if [ -f "\${PIPENV_WHERE_DIR}/.env" ]; then
     while IFS="" read -r ev || [ -n "\$ev" ]; do
         export \$ev
-    done < "\${DIR}/.env"
+    done < "\${PIPENV_WHERE_DIR}/.env"
 fi
 
-if [ -d "\${DIR}/bin" ]; then
+if [ -d "\${PIPENV_WHERE_DIR}/bin" ]; then
     export OLD_PATH=\${PATH}
-    export PATH="\${DIR}/bin":\${PATH}
+    export PATH="\${PIPENV_WHERE_DIR}/bin":\${PATH}
 fi
 ENTER_EOF
 
@@ -147,15 +147,18 @@ deactivate
 unset PIPENV_VERBOSITY
 setopt AUTO_CD
 
-if [ -f \${OLDPWD}/.env ]; then
-    while IFS="" read -r ev || [ -n "\$ev" ]; do
-        unset \${ev%=*}
-    done < \${OLDPWD}/.env
-fi
+if [ ! -z "\${PIPENV_WHERE_DIR}" ]; then
+    if [ -f "\${PIPENV_WHERE_DIR}/.env" ]; then
+        while IFS="" read -r ev || [ -n "\$ev" ]; do
+            unset \${ev%=*}
+        done < "\${PIPENV_WHERE_DIR}/.env"
+    fi
 
-if [ -d ./bin ]; then
-    export PATH=\${OLD_PATH}
-    unset OLD_PATH
+    if [ -d "\${PIPENV_WHERE_DIR}/bin" ]; then
+        export PATH=\${PIPENV_WHERE_DIR}
+        unset OLD_PATH
+    fi
+    unset PIPENV_WHERE_DIR
 fi
 LEAVE_EOF
     cd .
@@ -165,10 +168,16 @@ LEAVE_EOF
 # REMOVE PYTHON PIPENV
 # Takes the venv name as a parameter.
 function rmvenv() {
-    source $(pipenv --where)/.autoenv_leave.zsh
-    rm $(pipenv --where)/.autoenv.zsh
-    rm $(pipenv --where)/.autoenv_leave.zsh
-    rm -rf $(pipenv --venv)
+    WHERE="$(pipenv --where)"
+    VENV="$(pipenv --venv)"
+    if [ ! -z "${WHERE}" ]; then
+        source "${WHERE}/.autoenv_leave.zsh"
+        rm "${WHERE}/.autoenv.zsh"
+        rm "${WHERE}/.autoenv_leave.zsh"
+    fi
+    if [ ! -z "${VENV}" ]; then
+        rm -rf "${VENV}"
+    fi
 }
 
 
