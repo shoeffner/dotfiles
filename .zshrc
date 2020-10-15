@@ -1,13 +1,10 @@
 # ENVIRONMENT
-export PATH="/usr/local/sbin:$PATH"
-export JAVA_HOME=$(/usr/libexec/java_home)
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export LC_ALL='en_US.utf-8'
 export LANG='en_US.utf-8'
 export HOMEBREW_EDITOR=vim
-export HOMEBREW_INSTALL_CLEANUP=1
-export DISPLAY=$(ipconfig getifaddr en0):0
-
+export EDITOR=vim
+export PATH=${PATH}:${HOME}/.local/bin
 
 # ANTIGEN
 source /usr/local/share/antigen/antigen.zsh
@@ -17,11 +14,9 @@ antigen init ${HOME}/.antigenrc
 fpath=(${HOME}/.zsh/completions $fpath)
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
-eval "$(pandoc --bash-completion)"
 
 
 # ALIASES
-eval "$(thefuck --alias)"
 function json() {
     python -m json.tool $1 | less
 }

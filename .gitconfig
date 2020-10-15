@@ -10,10 +10,7 @@
 	co = checkout
 	web = instaweb --httpd=webrick
 	webstop = instaweb --httpd=webrick --stop
-[commit]
-	gpgsign = true
 [user]
-	signingkey = 487EBDD5
 	name = Sebastian Höffner
 	email = info@sebastian-hoeffner.de
 [rerere]
