@@ -1,7 +1,7 @@
 #compdef p
 
 _p() {
-    _arguments "1: :($(ls ${HOME}/Projects))"
+    _arguments "1: :($(ls ${HOME}))"
 }
 
 _p "$@"

@@ -1,10 +1,13 @@
+alias ufw="sudo PYTHONPATH=/usr/lib/python3/dist-packages ufw"
 # ENVIRONMENT
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export LC_ALL='en_US.utf-8'
 export LANG='en_US.utf-8'
 export HOMEBREW_EDITOR=vim
 export EDITOR=vim
-export PATH=${PATH}:${HOME}/.local/bin
+export PATH=${PATH}:${HOME}/.local/bin:/opt/hadoop/bin:/opt/fuseki/bin
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export LD_LIBRARY_PATH=/opt/hadoop/lib/native:${LD_LIBRARY_PATH}
 
 # ANTIGEN
 source /usr/local/share/antigen/antigen.zsh
@@ -31,7 +34,7 @@ alias cpip="myip | clipcopy"
 
 # Projects directory
 function p() {
-    cd ${HOME}/Projects/$1
+    cd ${HOME}/$1
 }
 
 # VIM MODE

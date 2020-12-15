@@ -31,7 +31,7 @@ function git_simple_repository() {
 }
 
 
-PROMPT='%{%F{182}%}$(virtual_env)%(1l. .)%f%(?.%{%F{green}%}.%{%F{red}%})%#%{%F{249}%} '
+PROMPT='$(hostname) %{%F{182}%}$(virtual_env)%(1l. .)%f%(?.%{%F{green}%}.%{%F{red}%})%#%{%F{249}%} '
 FIND_FEATURE="feature"
 REPL_FEATURE="f"
 RPS1='%{%f%}%{%F{220}%}%2~%{%f%}%{%F{236}%} ${$(git_simple_repository)}%{%f%} ${$(git_prompt_info)//$FIND_FEATURE/$REPL_FEATURE}'
