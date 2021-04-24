@@ -9,7 +9,13 @@ fi
 
 function virtual_env() {
     if [ -n "$VIRTUAL_ENV" ]; then
-        print "$(echo "${VIRTUAL_ENV##*/}" | rev | cut -c10- | rev)"
+        p="$(echo "${VIRTUAL_ENV##*/}" | rev | cut -c10- | rev)"
+        if [ ! -n "${p}" ]; then
+            p=${VIRTUAL_ENV%/*}
+            print ${p##*/}
+        else
+            print "${p}"
+        fi
     else
         print ""
     fi
@@ -40,3 +46,4 @@ ZSH_THEME_GIT_PROMPT_PREFIX='%{%F{60}%}'
 ZSH_THEME_GIT_PROMPT_SUFFIX='%{%f%}'
 ZSH_THEME_GIT_PROMPT_DIRTY=' ⚡'
 ZSH_THEME_GIT_PROMPT_CLEAN=''
+
