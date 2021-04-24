@@ -39,6 +39,10 @@ function p() {
     cd ${HOME}/Projects/$1
 }
 
+function dvc() {
+    docker run -v $(pwd):/data dvc $@
+}
+
 # VIM MODE
 set -o vi
 bindkey -v
