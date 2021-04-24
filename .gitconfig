@@ -42,3 +42,5 @@
 	pushInsteadOf = "https://gitlab.informatik.uni-bremen.de/"
 [pager]
 	branch = false
+[pull]
+	rebase = false
