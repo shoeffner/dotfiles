@@ -127,40 +127,24 @@ function mkvenv() {
     DIR=$(pipenv --where)
     cat << ENTER_EOF > ${DIR}/.autoenv.zsh
 unsetopt AUTO_CD
-export PIPENV_VERBOSITY=-1
+autostash PIPENV_VERBOSITY=-1
 source \$(pipenv --venv)/bin/activate
 PIPENV_WHERE_DIR="\$(pipenv --where)"
 
 if [ -f "\${PIPENV_WHERE_DIR}/.env" ]; then
     while IFS="" read -r ev || [ -n "\$ev" ]; do
-        export \$ev
+        autostash \$ev
     done < "\${PIPENV_WHERE_DIR}/.env"
 fi
 
 if [ -d "\${PIPENV_WHERE_DIR}/bin" ]; then
-    export OLD_PATH=\${PATH}
-    export PATH="\${PIPENV_WHERE_DIR}/bin":\${PATH}
+    autostash PATH="\${PIPENV_WHERE_DIR}/bin":\${PATH}
 fi
 ENTER_EOF
 
     cat << LEAVE_EOF > ${DIR}/.autoenv_leave.zsh
 deactivate
-unset PIPENV_VERBOSITY
 setopt AUTO_CD
-
-if [ ! -z "\${PIPENV_WHERE_DIR}" ]; then
-    if [ -f "\${PIPENV_WHERE_DIR}/.env" ]; then
-        while IFS="" read -r ev || [ -n "\$ev" ]; do
-            unset \${ev%=*}
-        done < "\${PIPENV_WHERE_DIR}/.env"
-    fi
-
-    if [ -d "\${PIPENV_WHERE_DIR}/bin" ]; then
-        export PATH=\${PIPENV_WHERE_DIR}
-        unset OLD_PATH
-    fi
-    unset PIPENV_WHERE_DIR
-fi
 LEAVE_EOF
     cd .
 }
