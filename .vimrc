@@ -12,6 +12,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'python-mode/python-mode'
 Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'mitsuhiko/vim-jinja'
+Plugin 'MaxMEllon/vim-jsx-pretty'
+Plugin 'cespare/vim-toml'
 
 call vundle#end()
 
