@@ -7,3 +7,5 @@ compile_commands.json
 CPPLINT.cfg
 .vscode
 catalog-v001.xml
+venv/*
+.venv
