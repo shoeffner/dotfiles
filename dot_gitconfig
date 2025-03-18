@@ -1,0 +1,8 @@
+[user]
+	email = info@sebastian-hoeffner.de
+	name = Sebastian Höffner
+	signingKey = 5B5AF1488367FF8E0E87607A80B9206ECAED319F
+[commit]
+	gpgSign = true
+[tag]
+	gpgSign = true

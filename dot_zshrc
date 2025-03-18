@@ -1,0 +1,26 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=100000
+SAVEHIST=100000
+setopt extendedglob
+unsetopt autocd beep
+bindkey -v
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/shoeffner/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+export ZSH=${HOME}/.zsh
+export EDITOR=nvim
+
+source $ZSH/themes/fae.zsh-theme
+
+export PATH=${PATH}:${HOME}/.cargo/bin:/usr/local/go/bin
+export XDG_CONFIG_HOME=${HOME}/.config
+
+. ${HOME}/.cargo/env

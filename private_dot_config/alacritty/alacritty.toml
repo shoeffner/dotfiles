@@ -1,0 +1,4 @@
+[keyboard]
+bindings = [
+  { key = "n", mods = "Alt|Shift", action = "CreateNewWindow" }
+]
