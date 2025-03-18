@@ -1,8 +1,53 @@
+[alias]
+	co = checkout
+	slog = log --pretty='format:%C(green)%h%Creset %C(cyan)%aI%Creset %C(magenta)%s%Creset%n        %C(yellow)%aN <%ae>%Creset %C(green dim)[%G?% GS]%Creset' --graph
+	st = status -sb
+[color "diff"]
+	old = red strike
+	new = green
+[commit]
+	gpgsign = true
+[core]
+	excludesfile = ~/.gitignore
+[diff]
+	colormoved = true
+	algorithm = histogram
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+[help]
+	autocorrect = prompt
+[init]
+	defaultBranch = main
+[merge]
+	conflictstyle = zdiff3
+[pager]
+	branch = false
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
+[rerere]
+	enabled = true
+	autoupdate = true
+[tag]
+	gpgsign = true
+	sort = version:refname
+[url "git@gitlab.com:"]
+	insteadOf = "gl:"
+	insteadOf = "git://gitlab.com"
+	pushInsteadOf = "gitlab:"
+	pushInsteadOf = "git://gitlab.com/"
+	pushInsteadOf = "https://gitlab.com/"
+[url "git@github.com:"]
+	insteadOf = "gh:"
+	insteadOf = "git://github.com"
+	pushInsteadOf = "github:"
+	pushInsteadOf = "git://github.com/"
+	pushInsteadOf = "https://github.com/"
 [user]
 	email = info@sebastian-hoeffner.de
 	name = Sebastian Höffner
-	signingKey = 5B5AF1488367FF8E0E87607A80B9206ECAED319F
-[commit]
-	gpgSign = true
-[tag]
-	gpgSign = true
+	signingkey = 5B5AF1488367FF8E0E87607A80B9206ECAED319F
+

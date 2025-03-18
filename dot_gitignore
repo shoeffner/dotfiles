@@ -1,0 +1,9 @@
+*.sw[po]
+.DS_Store
+*.*~
+*.*#
+.autoenv*
+CPPLINT.cfg
+catalog-v001.xml
+venv/*
+.venv
