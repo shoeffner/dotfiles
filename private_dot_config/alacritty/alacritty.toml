@@ -1,4 +1,5 @@
 [keyboard]
 bindings = [
-  { key = "n", mods = "Alt|Shift", action = "CreateNewWindow" }
+  { key = "n", mods = "Alt", action = "CreateNewWindow" },
+  { key = "w", mods = "Alt", action = "Quit" },
 ]
